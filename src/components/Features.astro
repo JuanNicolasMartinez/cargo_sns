@@ -1,0 +1,126 @@
+---
+import { Box, Map, Smartphone, Award, Camera, ShieldCheck } from "lucide-astro";
+
+const features = [
+    {
+        icon: Box,
+        title: "Almacenamiento Inteligente",
+        description:
+            "Encuentra bodegas cercanas verificadas. Gestiona tu inventario desde la app.",
+        color: "text-blue-500",
+        bg: "bg-blue-500/10",
+    },
+    {
+        icon: Map,
+        title: "Mapa en Tiempo Real",
+        description:
+            "Visualiza la ubicación de tu carga y disponibilidad de bodegas en un mapa interactivo.",
+        color: "text-green-500",
+        bg: "bg-green-500/10",
+    },
+    {
+        icon: Smartphone,
+        title: "Gestión Móvil",
+        description:
+            "Todo el poder de la logística en tu bolsillo. App nativa para iOS y Android.",
+        color: "text-purple-500",
+        bg: "bg-purple-500/10",
+    },
+    {
+        icon: ShieldCheck,
+        title: "Seguridad Garantizada",
+        description:
+            "Transportistas y bodegueros verificados. Tu mercancía siempre segura.",
+        color: "text-indigo-500",
+        bg: "bg-indigo-500/10",
+    },
+    {
+        icon: Camera,
+        title: "Verificación Visual",
+        description:
+            "Fotos reales de bodegas y vehículos antes de contratar. Sin sorpresas.",
+        color: "text-pink-500",
+        bg: "bg-pink-500/10",
+    },
+    {
+        icon: Award,
+        title: "Gamificación",
+        description:
+            "Gana puntos y reputación por cada operación exitosa. Sube de nivel.",
+        color: "text-yellow-500",
+        bg: "bg-yellow-500/10",
+    },
+];
+---
+
+<section id="features" class="py-24 relative overflow-hidden bg-white/50">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <h2 class="text-4xl font-bold text-brand-dark">
+                Todo lo que necesitas
+            </h2>
+            <p class="text-gray-600 text-lg">
+                Potenciamos la logística con tecnología de punta y diseño
+                centrado en el usuario.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                features.map((feature, index) => {
+                    const Icon = feature.icon;
+                    return (
+                        <div class="feature-card group relative p-8 bg-white/90 backdrop-blur-xl border border-white/60 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden z-20">
+                            <div class="absolute inset-0 bg-gradient-to-br from-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <div
+                                class={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${feature.bg} ${feature.color} group-hover:scale-110 transition-transform duration-300 relative z-10`}
+                            >
+                                <Icon class="w-7 h-7" />
+                            </div>
+
+                            <h3 class="text-xl font-bold text-brand-dark mb-3 group-hover:text-brand-primary transition-colors relative z-10">
+                                {feature.title}
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed relative z-10">
+                                {feature.description}
+                            </p>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial check to prevent FOUC (Flash of Unstyled Content) if JS fails
+    gsap.set(".feature-card", {
+        y: 50,
+        opacity: 0,
+    });
+
+    try {
+        gsap.to(".feature-card", {
+            scrollTrigger: {
+                trigger: "#features",
+                start: "top 85%", // Trigger slightly earlier
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
+            clearProps: "all", // Remove inline styles after animation to avoid conflict
+        });
+    } catch (e) {
+        console.error("GSAP Error:", e);
+        // Fallback if animation fails
+        gsap.set(".feature-card", { opacity: 1, y: 0 });
+    }
+</script>

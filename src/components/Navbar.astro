@@ -1,0 +1,83 @@
+---
+import { Menu } from "lucide-astro";
+---
+
+<nav
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+    id="navbar"
+>
+    <div
+        class="absolute inset-0 bg-white/10 backdrop-blur-md border-b border-white/20 shadow-sm opacity-0"
+        id="nav-bg"
+    >
+    </div>
+    <div
+        class="container mx-auto px-6 py-4 relative flex justify-between items-center"
+    >
+        <a
+            href="/"
+            class="text-2xl font-bold text-brand-dark flex items-center gap-2"
+        >
+            <div
+                class="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-primary/30"
+            >
+                C
+            </div>
+            <span class="tracking-tight">CargoSnS</span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8">
+            <a
+                href="#features"
+                class="text-brand-dark/80 hover:text-brand-primary font-medium transition-colors"
+                >Características</a
+            >
+            <a
+                href="#how-it-works"
+                class="text-brand-dark/80 hover:text-brand-primary font-medium transition-colors"
+                >Cómo Funciona</a
+            >
+            <a
+                href="#download"
+                class="text-brand-dark/80 hover:text-brand-primary font-medium transition-colors"
+                >Descargar</a
+            >
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+            <a
+                href="#"
+                class="font-semibold text-brand-dark hover:text-brand-primary transition-colors"
+                >Iniciar Sesión</a
+            >
+            <a
+                href="#"
+                class="px-5 py-2.5 bg-brand-primary hover:bg-brand-dark text-white font-semibold rounded-full shadow-lg shadow-brand-primary/20 transition-all transform hover:scale-105"
+            >
+                Empezar Ahora
+            </a>
+        </div>
+
+        <button class="md:hidden text-brand-dark focus:outline-none">
+            <Menu class="w-8 h-8" />
+        </button>
+    </div>
+</nav>
+
+<script>
+    // Navbar scroll effect
+    const navBg = document.getElementById("nav-bg");
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+            navBg.classList.remove("opacity-0");
+            navbar.classList.add("py-2");
+            navbar.classList.remove("py-4");
+        } else {
+            navBg.classList.add("opacity-0");
+            navbar.classList.remove("py-2");
+            navbar.classList.add("py-4");
+        }
+    });
+</script>

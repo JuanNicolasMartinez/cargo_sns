@@ -1,0 +1,201 @@
+---
+
+---
+
+<section
+    class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+>
+    <!-- Background Elements -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+        <div
+            class="absolute top-[20%] left-[10%] w-72 h-72 bg-brand-primary/20 rounded-full blur-[100px] animate-pulse"
+        >
+        </div>
+        <div
+            class="absolute bottom-[20%] right-[10%] w-96 h-96 bg-brand-light/30 rounded-full blur-[120px] animate-pulse delay-1000"
+        >
+        </div>
+    </div>
+
+    <div
+        class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center"
+    >
+        <div class="space-y-8" id="hero-content">
+            <div
+                class="inline-flex items-center px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-sm font-medium animate-fade-in-up"
+            >
+                <span
+                    class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"
+                ></span>
+                La revolución logística está aquí
+            </div>
+
+            <h1
+                class="text-5xl lg:text-7xl font-bold leading-tight text-brand-dark"
+            >
+                Almacena y Transporta <br />
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-light"
+                    >Sin Límites</span
+                >
+            </h1>
+
+            <p class="text-xl text-gray-600 max-w-xl leading-relaxed">
+                Conecta con espacios seguros y transportistas confiables en
+                tiempo real. La solución inteligente para optimizar tu carga y
+                espacio.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <a
+                    href="#"
+                    class="px-8 py-4 bg-brand-primary hover:bg-brand-dark text-white font-bold rounded-xl shadow-xl shadow-brand-primary/30 transition-all transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2"
+                >
+                    Buscar Espacio
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a
+                    href="#"
+                    class="px-8 py-4 bg-white hover:bg-gray-50 text-brand-dark border border-gray-200 font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
+                >
+                    Soy Transportista
+                    <span class="group-hover:translate-x-1 transition-transform"
+                        >→</span
+                    >
+                </a>
+            </div>
+
+            <div class="pt-8 flex items-center gap-4 text-sm text-gray-500">
+                <div class="flex -space-x-2">
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white"
+                    >
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"
+                    >
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white"
+                    >
+                    </div>
+                </div>
+                <p>Uniéndose a +200 empresas y conductores hoy.</p>
+            </div>
+        </div>
+
+        <div
+            class="relative hidden lg:block h-[600px] w-full perspective-1000"
+            id="hero-visual"
+        >
+            <!-- Main Hero Image (Warehouse) -->
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]"
+            >
+                <div
+                    class="absolute top-0 right-0 w-80 h-96 rounded-3xl overflow-hidden shadow-2xl z-20 transform rotate-6 animate-float border-4 border-white/20"
+                >
+                    <img
+                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop"
+                        alt="Smart Warehouse"
+                        class="w-full h-full object-cover"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent flex flex-col justify-end p-6"
+                    >
+                        <span class="text-white font-bold text-lg"
+                            >Almacenamiento Inteligente</span
+                        >
+                        <span class="text-brand-light text-sm"
+                            >Gestionado por IA</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Secondary Image (Transport) -->
+                <div
+                    class="absolute bottom-10 -left-10 w-72 h-56 rounded-3xl overflow-hidden shadow-2xl z-30 transform -rotate-6 hover:rotate-0 transition-transform duration-500 border-4 border-white/20 glass-dark"
+                >
+                    <div class="relative h-full w-full">
+                        <img
+                            src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1000&auto=format&fit=crop"
+                            alt="Transport"
+                            class="w-full h-full object-cover opacity-60"
+                        />
+                        <div
+                            class="absolute inset-0 flex flex-col justify-center items-center p-4 text-center"
+                        >
+                            <div
+                                class="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center mb-2 shadow-lg hover:scale-110 transition-transform"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                                    ></path></svg
+                                >
+                            </div>
+                            <h3 class="text-white font-bold text-xl">
+                                +200 Rutas
+                            </h3>
+                            <p class="text-brand-light text-sm">
+                                Disponibles ahora
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorative Elements -->
+                <div
+                    class="absolute -top-10 -right-10 w-32 h-32 bg-brand-primary/20 backdrop-blur-xl rounded-full animate-pulse z-10"
+                >
+                </div>
+                <div
+                    class="absolute bottom-20 right-20 w-24 h-24 bg-brand-light/20 backdrop-blur-xl rounded-full z-10 animate-float delay-700"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+
+    // Hero Animations
+    const tl = gsap.timeline();
+
+    tl.from("#hero-content > *", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power3.out",
+    }).from(
+        "#hero-visual",
+        {
+            x: 50,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+        },
+        "-=0.8",
+    );
+</script>
