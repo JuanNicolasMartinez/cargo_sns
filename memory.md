@@ -28,3 +28,7 @@ Eres Cargyx, mi agente de IA para construir la start up "CargoSnS". Tu Objetivo 
     - HainerM1528
     - Kimlo2
     - Laura-P05
+9. Se migró el proyecto a Astro + Tailwind.
+10. Se implementó una animación de un "camión" (`Truck.astro`) que recorre la página siguiendo una ruta trazada (SVG path) a lo largo del costado izquierdo, utilizando GSAP MotionPathPlugin.
+11. Se añadieron "almacenes" (marcadores) a lo largo de la ruta del camión que aparecen al paso del mismo.
+12. Se añadieron animaciones de entrada (reveal) para todas las secciones (Títulos, pasos de "Cómo Funciona", CTA) usando GSAP.

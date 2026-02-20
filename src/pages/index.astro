@@ -4,28 +4,48 @@ import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
 import Footer from "../components/Footer.astro";
+import Truck from "../components/Truck.astro";
 ---
 
 <Layout title="CargoSnS | Almacenamiento y Logística Inteligente">
+	<!-- Truck Animation Container -->
+	<div class="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+		<div
+			id="truck-container"
+			class="absolute inset-0 w-full h-full opacity-0"
+		>
+			<Truck />
+		</div>
+	</div>
+
 	<Navbar />
 
-	<main>
-		<Hero />
+	<main class="overflow-x-hidden">
+		<!-- Hero Section -->
+		<div class="hero-section relative z-10">
+			<Hero />
+		</div>
 
-		<Features />
+		<!-- Features Section -->
+		<div class="features-section relative z-20">
+			<Features />
+		</div>
 
 		<!-- How It Works Section with Scroll Reveal -->
 		<section
 			id="how-it-works"
-			class="py-24 bg-brand-dark text-white relative overflow-hidden"
+			class="py-24 bg-brand-dark text-white relative overflow-hidden z-10"
 		>
 			<div
-				class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0"
+				class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0 parallax-bg"
+				data-speed="0.5"
 			>
 			</div>
 
 			<div class="container mx-auto px-6 relative z-10">
-				<h2 class="text-4xl lg:text-5xl font-bold text-center mb-16">
+				<h2
+					class="text-4xl lg:text-5xl font-bold text-center mb-16 section-title"
+				>
 					<span
 						class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-light"
 						>Cómo Funciona</span
@@ -39,7 +59,8 @@ import Footer from "../components/Footer.astro";
 					>
 						<div class="w-full md:w-1/2 flex justify-center">
 							<div
-								class="w-64 h-64 bg-gradient-to-tr from-brand-primary to-brand-light rounded-full blur-[80px] absolute opacity-30"
+								class="w-64 h-64 bg-gradient-to-tr from-brand-primary to-brand-light rounded-full blur-[80px] absolute opacity-30 parallax-bg"
+								data-speed="0.2"
 							>
 							</div>
 							<div
@@ -67,7 +88,7 @@ import Footer from "../components/Footer.astro";
 							</div>
 						</div>
 						<div
-							class="w-full md:w-1/2 space-y-6 text-center md:text-left"
+							class="w-full md:w-1/2 space-y-6 text-center md:text-left info-content"
 						>
 							<h3 class="text-3xl font-bold">
 								Encuentra el espacio perfecto
@@ -86,7 +107,8 @@ import Footer from "../components/Footer.astro";
 					>
 						<div class="w-full md:w-1/2 flex justify-center">
 							<div
-								class="w-64 h-64 bg-gradient-to-tr from-brand-light to-white rounded-full blur-[80px] absolute opacity-20"
+								class="w-64 h-64 bg-gradient-to-tr from-brand-light to-white rounded-full blur-[80px] absolute opacity-20 parallax-bg"
+								data-speed="0.3"
 							>
 							</div>
 							<div
@@ -114,7 +136,7 @@ import Footer from "../components/Footer.astro";
 							</div>
 						</div>
 						<div
-							class="w-full md:w-1/2 space-y-6 text-center md:text-left"
+							class="w-full md:w-1/2 space-y-6 text-center md:text-left info-content"
 						>
 							<h3 class="text-3xl font-bold">
 								Logística integrada
@@ -133,7 +155,8 @@ import Footer from "../components/Footer.astro";
 					>
 						<div class="w-full md:w-1/2 flex justify-center">
 							<div
-								class="w-64 h-64 bg-gradient-to-tr from-green-400 to-brand-primary rounded-full blur-[80px] absolute opacity-30"
+								class="w-64 h-64 bg-gradient-to-tr from-green-400 to-brand-primary rounded-full blur-[80px] absolute opacity-30 parallax-bg"
+								data-speed="0.4"
 							>
 							</div>
 							<div
@@ -161,7 +184,7 @@ import Footer from "../components/Footer.astro";
 							</div>
 						</div>
 						<div
-							class="w-full md:w-1/2 space-y-6 text-center md:text-left"
+							class="w-full md:w-1/2 space-y-6 text-center md:text-left info-content"
 						>
 							<h3 class="text-3xl font-bold">Control total</h3>
 							<p class="text-xl text-gray-400 leading-relaxed">
@@ -176,23 +199,29 @@ import Footer from "../components/Footer.astro";
 		</section>
 
 		<!-- Map CTA Section -->
-		<section class="py-24 relative overflow-hidden">
-			<div class="absolute inset-0 bg-brand-primary/5"></div>
+		<section class="cta-section py-24 relative overflow-hidden z-10">
+			<div
+				class="absolute inset-0 bg-brand-primary/5 parallax-bg"
+				data-speed="0.1"
+			>
+			</div>
 			<div
 				class="container mx-auto px-6 relative z-10 text-center space-y-8"
 			>
 				<h2
-					class="text-4xl font-bold text-brand-dark max-w-3xl mx-auto"
+					class="cta-title text-4xl font-bold text-brand-dark max-w-3xl mx-auto opacity-0 translate-y-10"
 				>
 					Únete a la red logística más grande de Latinoamérica
 				</h2>
-				<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+				<p
+					class="cta-text text-xl text-gray-600 max-w-2xl mx-auto opacity-0 translate-y-10"
+				>
 					Empezar es gratis. Solo cobramos una pequeña comisión por
 					transacción exitosa.
 				</p>
 
 				<div
-					class="flex flex-col sm:flex-row justify-center gap-4 pt-8"
+					class="cta-buttons flex flex-col sm:flex-row justify-center gap-4 pt-8 opacity-0 translate-y-10"
 				>
 					<button
 						class="px-8 py-4 bg-brand-dark text-white font-bold rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform"
@@ -218,21 +247,89 @@ import Footer from "../components/Footer.astro";
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	// How It Works Staggered Reveal
-	const steps = document.querySelectorAll(".step-card");
+	// --- ANIMATIONS ---
 
-	steps.forEach((step, i) => {
-		gsap.to(step, {
+	// Truck animation is handled inside the Truck component
+
+	// 2. Section Titles Reveal
+	const titles = document.querySelectorAll(".section-title");
+	titles.forEach((title) => {
+		gsap.from(title, {
 			scrollTrigger: {
-				trigger: step,
+				trigger: title,
 				start: "top 80%",
-				end: "bottom 20%",
 				toggleActions: "play none none reverse",
 			},
-			opacity: 1,
-			y: -50,
+			y: 50,
+			opacity: 0,
 			duration: 1,
 			ease: "power3.out",
+		});
+	});
+
+	// 3. How It Works Steps (Staggered with 3D effect)
+	const steps = document.querySelectorAll(".step-card");
+	steps.forEach((step, i) => {
+		const direction = i % 2 === 0 ? -100 : 100; // Alternate slide direction
+
+		gsap.fromTo(
+			step,
+			{ opacity: 0, x: direction, rotateY: direction > 0 ? 15 : -15 },
+			{
+				scrollTrigger: {
+					trigger: step,
+					start: "top 75%",
+					end: "bottom 20%",
+					toggleActions: "play none none reverse", // Re-adds reveal on scroll back
+				},
+				opacity: 1,
+				x: 0,
+				rotateY: 0,
+				duration: 1.2,
+				ease: "power3.out",
+			},
+		);
+	});
+
+	// 4. CTA Section Reveal
+	const ctaTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: ".cta-section",
+			start: "top 70%",
+		},
+	});
+
+	ctaTl
+		.to(".cta-title", {
+			y: 0,
+			opacity: 1,
+			duration: 0.8,
+			ease: "power3.out",
+		})
+		.to(
+			".cta-text",
+			{ y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+			"-=0.6",
+		)
+		.to(
+			".cta-buttons",
+			{ y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
+			"-=0.6",
+		);
+
+	// 5. Parallax Backgrounds
+	// Simple parallax effect for elements with .parallax-bg class
+	gsap.utils.toArray(".parallax-bg").forEach((bg: any) => {
+		const speed = bg.dataset.speed || 0.2;
+		gsap.to(bg, {
+			y: (i, target) => ScrollTrigger.maxScroll(window) * speed * 0.1, // Basic movement
+			ease: "none",
+			scrollTrigger: {
+				trigger: bg.parentElement || "body",
+				start: "top bottom",
+				end: "bottom top",
+				scrub: true,
+			},
 		});
 	});
 </script>
