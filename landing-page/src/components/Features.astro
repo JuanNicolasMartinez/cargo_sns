@@ -53,13 +53,13 @@ const features = [
 ];
 ---
 
-<section id="features" class="py-24 relative overflow-hidden bg-white/50">
+<section id="features" class="py-24 relative overflow-hidden bg-white/50 dark:bg-slate-900/50">
     <div class="container mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <h2 class="text-4xl font-bold text-brand-dark">
+            <h2 class="text-4xl font-bold text-brand-dark dark:text-white">
                 Todo lo que necesitas
             </h2>
-            <p class="text-gray-600 text-lg">
+            <p class="text-gray-600 dark:text-gray-300 text-lg">
                 Potenciamos la logística con tecnología de punta y diseño
                 centrado en el usuario.
             </p>
@@ -70,8 +70,8 @@ const features = [
                 features.map((feature, index) => {
                     const Icon = feature.icon;
                     return (
-                        <div class="feature-card group relative p-8 bg-white/90 backdrop-blur-xl border border-white/60 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden z-20">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div class="feature-card group relative p-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-white/60 dark:border-slate-700 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden z-20">
+                            <div class="absolute inset-0 bg-gradient-to-br from-white dark:from-slate-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                             <div
                                 class={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${feature.bg} ${feature.color} group-hover:scale-110 transition-transform duration-300 relative z-10`}
@@ -79,10 +79,10 @@ const features = [
                                 <Icon class="w-7 h-7" />
                             </div>
 
-                            <h3 class="text-xl font-bold text-brand-dark mb-3 group-hover:text-brand-primary transition-colors relative z-10">
+                            <h3 class="text-xl font-bold text-brand-dark dark:text-white mb-3 group-hover:text-brand-primary transition-colors relative z-10">
                                 {feature.title}
                             </h3>
-                            <p class="text-gray-600 leading-relaxed relative z-10">
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed relative z-10">
                                 {feature.description}
                             </p>
                         </div>
