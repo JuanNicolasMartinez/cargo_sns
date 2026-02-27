@@ -132,21 +132,15 @@
     function initAnimation() {
         // ... (existing variable declarations)
         const truckElement = document.getElementById("truck-element");
-        const pathElement = document.getElementById("truck-path");
+        const pathElement = document.getElementById("truck-path") as unknown as SVGPathElement;
         const container = document.getElementById("truck-container-wrapper");
-        const parentContainer = document.getElementById("truck-container");
         const markers = document.querySelectorAll(".warehouse-marker");
 
         if (truckElement && pathElement && container) {
-            // 1. Reveal Parent Container
-            if (parentContainer) {
-                gsap.to(parentContainer, { opacity: 1, duration: 0.5 });
-            }
-
             // 2. Set Path
             const updatePath = () => {
-                const width = window.innerWidth;
-                const height = window.innerHeight;
+                const width = container.offsetWidth;
+                const height = container.offsetHeight;
 
                 // Responsive positioning
                 // Mobile: 85% width (giving ~40-60px space on right depending on resolution)
@@ -154,11 +148,11 @@
                 const startX = width < 768 ? width * 0.85 : width * 0.95;
                 const endX = startX;
 
-                // Create a wobbly vertical path
-                let d = `M ${startX} -120 `;
+                // Create a wobbly vertical path relative to container height
+                let d = `M ${startX} -50 `;
                 // Wave bulges to the left
                 d += `C ${Math.max(width * 0.5, startX - 80)} ${height * 0.3}, ${Math.min(width, startX + 40)} ${height * 0.4}, ${startX} ${height * 0.6} `;
-                d += `C ${Math.max(width * 0.5, startX - 80)} ${height * 0.8}, ${Math.min(width, startX + 40)} ${height * 0.9}, ${endX} ${height + 120} `;
+                d += `C ${Math.max(width * 0.5, startX - 80)} ${height * 0.8}, ${Math.min(width, startX + 40)} ${height * 0.9}, ${endX} ${height + 50} `;
 
                 pathElement.setAttribute("d", d);
                 return d;
@@ -168,17 +162,15 @@
 
             // 3. Position Markers on Path
             // Helper to place element on path at progress t [0-1]
-            function placeOnPath(element, progress) {
-                gsap.to(element, {
+            function placeOnPath(element: Element, progress: number) {
+                gsap.set(element, {
                     motionPath: {
                         path: pathElement,
                         align: pathElement,
                         alignOrigin: [0.5, 0.5],
                         start: progress,
                         end: progress,
-                        immediateRender: true,
                     },
-                    duration: 0,
                 });
             }
 
@@ -192,10 +184,10 @@
             // 4. Timeline Animation linked to Scroll
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: "body",
+                    trigger: ".hero-section", // Trigger based on Hero section
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 0.5, // Add some smoothing
+                    scrub: 1, // Smooth scrub
                 },
             });
 
@@ -234,7 +226,7 @@
             });
 
             // Handle Resize
-            let resizeTimeout;
+            let resizeTimeout: any;
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {

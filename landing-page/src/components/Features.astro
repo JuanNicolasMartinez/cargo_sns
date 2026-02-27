@@ -1,97 +1,507 @@
 ---
-import { Box, Map, Smartphone, Award, Camera, ShieldCheck } from "lucide-astro";
+/**
+ * Features Section — Scroll-Driven Video Map
+ * Designed to integrate seamlessly with CargoSnS light/dark theme.
+ * 
+ * Video map is naturally light-colored → works with light mode.
+ * Cards use theme-aware bg (white in light, dark in dark mode).
+ * Gradients transition: hero(white) → video → how-it-works(dark).
+ * 
+ * IMPORTANT: Place your video at /public/videos/City_map_with_truck.mp4
+ */
 
 const features = [
     {
-        icon: Box,
+        id: "almacenamiento",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`,
         title: "Almacenamiento Inteligente",
-        description:
-            "Encuentra bodegas cercanas verificadas. Gestiona tu inventario desde la app.",
-        color: "text-blue-500",
-        bg: "bg-blue-500/10",
+        description: "Encuentra bodegas cercanas verificadas. Gestiona tu inventario desde la app.",
     },
     {
-        icon: Map,
+        id: "mapa",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>`,
         title: "Mapa en Tiempo Real",
-        description:
-            "Visualiza la ubicación de tu carga y disponibilidad de bodegas en un mapa interactivo.",
-        color: "text-green-500",
-        bg: "bg-green-500/10",
+        description: "Visualiza la ubicación de tu carga y disponibilidad de bodegas en un mapa interactivo.",
     },
     {
-        icon: Smartphone,
+        id: "movil",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>`,
         title: "Gestión Móvil",
-        description:
-            "Todo el poder de la logística en tu bolsillo. App nativa para iOS y Android.",
-        color: "text-purple-500",
-        bg: "bg-purple-500/10",
+        description: "Todo el poder de la logística en tu bolsillo. App nativa para iOS y Android.",
     },
     {
-        icon: ShieldCheck,
+        id: "seguridad",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>`,
         title: "Seguridad Garantizada",
-        description:
-            "Transportistas y bodegueros verificados. Tu mercancía siempre segura.",
-        color: "text-indigo-500",
-        bg: "bg-indigo-500/10",
+        description: "Transportistas y bodegueros verificados. Tu mercancía siempre segura.",
     },
     {
-        icon: Camera,
+        id: "verificacion",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>`,
         title: "Verificación Visual",
-        description:
-            "Fotos reales de bodegas y vehículos antes de contratar. Sin sorpresas.",
-        color: "text-pink-500",
-        bg: "bg-pink-500/10",
+        description: "Fotos reales de bodegas y vehículos antes de contratar. Sin sorpresas.",
     },
     {
-        icon: Award,
+        id: "gamificacion",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`,
         title: "Gamificación",
-        description:
-            "Gana puntos y reputación por cada operación exitosa. Sube de nivel.",
-        color: "text-yellow-500",
-        bg: "bg-yellow-500/10",
+        description: "Gana puntos y reputación por cada operación exitosa. Sube de nivel.",
     },
 ];
 ---
 
-<section id="features" class="py-24 relative overflow-hidden bg-white/50 dark:bg-slate-900/50">
-    <div class="container mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <h2 class="text-4xl font-bold text-brand-dark dark:text-white">
-                Todo lo que necesitas
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300 text-lg">
-                Potenciamos la logística con tecnología de punta y diseño
-                centrado en el usuario.
-            </p>
+<!-- ═══════════════════════════════════════════════════════════════
+     SCROLL-DRIVEN VIDEO MAP — Features Section
+     Theme-aware: integrates with both light and dark modes.
+     ═══════════════════════════════════════════════════════════════ -->
+<section id="features" class="relative">
+    
+    <div id="video-pin-panel" class="relative w-full h-screen overflow-hidden">
+        
+        <!-- Video -->
+        <video
+            id="scroll-video"
+            class="absolute inset-0 w-full h-full object-cover"
+            src="/videos/City_map_with_truck.mp4"
+            muted
+            playsinline
+            preload="auto"
+            tabindex="-1"
+        ></video>
+
+        <!-- Soft vignette (subtle, not dark) -->
+        <div class="absolute inset-0 pointer-events-none vignette-overlay"></div>
+
+        <!-- 
+            TOP gradient: matches the hero section background
+            Light mode: white fade → transparent  
+            Dark mode: slate-900 fade → transparent
+        -->
+        <div class="absolute top-0 left-0 w-full h-36 z-10 pointer-events-none
+            bg-gradient-to-b from-white to-transparent
+            dark:from-slate-900 dark:to-transparent"></div>
+
+        <!-- 
+            BOTTOM gradient: transitions into "Cómo Funciona" (dark section)
+            Both modes: fade to brand-dark since next section IS dark
+        -->
+        <div class="absolute bottom-0 left-0 w-full h-36 z-10 pointer-events-none
+            bg-gradient-to-t from-brand-dark to-transparent"></div>
+
+        <!-- ─── Title overlay with frosted pill (NOT full-screen scrim) ─── -->
+        <div id="features-intro" class="absolute inset-0 z-20 flex items-center justify-center text-center px-6 pointer-events-none">
+            <div class="features-title-card relative max-w-2xl px-10 py-10 rounded-3xl">
+                <!-- Frosted glass bg — theme-aware -->
+                <div class="absolute inset-0 rounded-3xl 
+                    bg-white/70 backdrop-blur-2xl border border-white/50 shadow-2xl shadow-black/5
+                    dark:bg-slate-900/70 dark:border-white/10 dark:shadow-black/30
+                "></div>
+                <div class="relative space-y-4">
+                    <p class="text-xs uppercase tracking-[0.4em] text-brand-primary font-semibold">
+                        Potenciado por tecnología
+                    </p>
+                    <h2 class="text-4xl md:text-6xl font-bold leading-[1.1] text-brand-dark dark:text-white">
+                        Todo lo que<br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-light">
+                            necesitas
+                        </span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg max-w-md mx-auto">
+                        Explora las funcionalidades que transforman la logística urbana.
+                    </p>
+                    <div class="pt-2">
+                        <svg class="mx-auto w-5 h-5 text-brand-primary animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {
-                features.map((feature, index) => {
-                    const Icon = feature.icon;
-                    return (
-                        <div class="feature-card group relative p-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-white/60 dark:border-slate-700 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden z-20">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white dark:from-slate-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <!-- ─── Feature cards ─── -->
+        <div class="feature-overlay absolute z-20" data-feature-index="0" style="top: 18%; left: 3%;">
+            <div class="feature-card">
+                <div class="feature-card__icon"><Fragment set:html={features[0].icon} /></div>
+                <div class="feature-card__text">
+                    <h3>{features[0].title}</h3>
+                    <p>{features[0].description}</p>
+                </div>
+            </div>
+            <div class="feature-card__pin"></div>
+        </div>
 
-                            <div
-                                class={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${feature.bg} ${feature.color} group-hover:scale-110 transition-transform duration-300 relative z-10`}
-                            >
-                                <Icon class="w-7 h-7" />
+        <div class="feature-overlay absolute z-20" data-feature-index="1" style="top: 16%; right: 3%;">
+            <div class="feature-card">
+                <div class="feature-card__icon"><Fragment set:html={features[1].icon} /></div>
+                <div class="feature-card__text">
+                    <h3>{features[1].title}</h3>
+                    <p>{features[1].description}</p>
+                </div>
+            </div>
+            <div class="feature-card__pin"></div>
+        </div>
+
+        <div class="feature-overlay absolute z-20" data-feature-index="2" style="top: 46%; left: 3%;">
+            <div class="feature-card">
+                <div class="feature-card__icon"><Fragment set:html={features[2].icon} /></div>
+                <div class="feature-card__text">
+                    <h3>{features[2].title}</h3>
+                    <p>{features[2].description}</p>
+                </div>
+            </div>
+            <div class="feature-card__pin"></div>
+        </div>
+
+        <div class="feature-overlay absolute z-20" data-feature-index="3" style="top: 44%; right: 3%;">
+            <div class="feature-card">
+                <div class="feature-card__icon"><Fragment set:html={features[3].icon} /></div>
+                <div class="feature-card__text">
+                    <h3>{features[3].title}</h3>
+                    <p>{features[3].description}</p>
+                </div>
+            </div>
+            <div class="feature-card__pin"></div>
+        </div>
+
+        <div class="feature-overlay absolute z-20" data-feature-index="4" style="bottom: 20%; left: 3%;">
+            <div class="feature-card">
+                <div class="feature-card__icon"><Fragment set:html={features[4].icon} /></div>
+                <div class="feature-card__text">
+                    <h3>{features[4].title}</h3>
+                    <p>{features[4].description}</p>
+                </div>
+            </div>
+            <div class="feature-card__pin"></div>
+        </div>
+
+        <div class="feature-overlay absolute z-20" data-feature-index="5" style="bottom: 18%; right: 3%;">
+            <div class="feature-card">
+                <div class="feature-card__icon"><Fragment set:html={features[5].icon} /></div>
+                <div class="feature-card__text">
+                    <h3>{features[5].title}</h3>
+                    <p>{features[5].description}</p>
+                </div>
+            </div>
+            <div class="feature-card__pin"></div>
+        </div>
+
+        <!-- Progress dots -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
+            {features.map((_, i) => (
+                <div class="progress-dot" data-dot-index={i}></div>
+            ))}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- How It Works Section -->
+<section
+    id="how-it-works"
+    class="py-24 bg-brand-dark dark:bg-slate-950 text-white relative overflow-hidden z-10"
+>
+    <div
+        class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0 parallax-bg"
+        data-speed="0.5"
+    ></div>
+
+    <div 
+        class="absolute top-20 right-[10%] w-32 md:w-48 z-20 pointer-events-none hidden md:block" 
+        id="scroll-animation-wrapper"
+    >
+        <img 
+            src="/images/animation.webp" 
+            alt="Animación Scroll" 
+            class="w-full h-auto drop-shadow-2xl"
+            onerror="this.style.display='none'"
+        />
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16 section-title">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-light">
+                Cómo Funciona
+            </span>
+        </h2>
+
+        <div class="space-y-24">
+            <div class="flex flex-col md:flex-row items-center gap-12 step-card opacity-0">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="w-64 h-64 bg-gradient-to-tr from-brand-primary to-brand-light rounded-full blur-[80px] absolute opacity-30 parallax-bg" data-speed="0.2"></div>
+                    <div class="relative w-full max-w-sm aspect-square bg-white/20 backdrop-blur-2xl border border-white/30 rounded-3xl overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1000&auto=format&fit=crop" alt="Buscar Bodega" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+                            <div class="text-white">
+                                <div class="text-5xl font-bold opacity-30 mb-2">01</div>
+                                <h3 class="text-2xl font-bold">Publica o Busca</h3>
                             </div>
-
-                            <h3 class="text-xl font-bold text-brand-dark dark:text-white mb-3 group-hover:text-brand-primary transition-colors relative z-10">
-                                {feature.title}
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed relative z-10">
-                                {feature.description}
-                            </p>
                         </div>
-                    );
-                })
-            }
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6 text-center md:text-left info-content">
+                    <h3 class="text-3xl font-bold">Encuentra el espacio perfecto</h3>
+                    <p class="text-xl text-gray-400 leading-relaxed">Si tienes mercancía, busca bodegas cercanas. Si tienes espacio, publícalo en minutos y empieza a monetizar tus m² ociosos.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12 step-card opacity-0">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="w-64 h-64 bg-gradient-to-tr from-brand-light to-white rounded-full blur-[80px] absolute opacity-20 parallax-bg" data-speed="0.3"></div>
+                    <div class="relative w-full max-w-sm aspect-square bg-white/20 backdrop-blur-2xl border border-white/30 rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                        <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=1000&auto=format&fit=crop" alt="Transporte" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+                            <div class="text-white text-right w-full">
+                                <div class="text-5xl font-bold opacity-30 mb-2">02</div>
+                                <h3 class="text-2xl font-bold">Conecta Transporte</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6 text-center md:text-left info-content">
+                    <h3 class="text-3xl font-bold">Logística integrada</h3>
+                    <p class="text-xl text-gray-400 leading-relaxed">Solicita transporte verificado para mover tu carga desde o hacia la bodega. Rastreo en tiempo real incluido.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center gap-12 step-card opacity-0">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="w-64 h-64 bg-gradient-to-tr from-green-400 to-brand-primary rounded-full blur-[80px] absolute opacity-30 parallax-bg" data-speed="0.4"></div>
+                    <div class="relative w-full max-w-sm aspect-square bg-white/20 backdrop-blur-2xl border border-white/30 rounded-3xl overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" alt="Gestión" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+                            <div class="text-white">
+                                <div class="text-5xl font-bold opacity-30 mb-2">03</div>
+                                <h3 class="text-2xl font-bold">Gestiona y Crece</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6 text-center md:text-left info-content">
+                    <h3 class="text-3xl font-bold">Control total</h3>
+                    <p class="text-xl text-gray-400 leading-relaxed">Usa nuestro dashboard para gestionar inventario, pagos y reputación. Sube de nivel con nuestro sistema de gamificación.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+
+<style>
+    /* ═══════════════════════════════════
+       Vignette — subtle, no dark overlay
+       ═══════════════════════════════════ */
+    .vignette-overlay {
+        background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.15) 100%);
+    }
+    :global(.dark) .vignette-overlay {
+        background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+    }
+
+    /* ═══════════════════════════════════
+       Feature Cards — Theme-aware
+       Light: white frosted glass, dark text
+       Dark: dark frosted glass, light text
+       ═══════════════════════════════════ */
+    .feature-overlay {
+        opacity: 0;
+        transform: translateY(20px) scale(0.94);
+        pointer-events: none;
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        max-width: 310px;
+    }
+
+    .feature-overlay.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    /* ── Light mode card ── */
+    .feature-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 1px 3px rgba(0, 0, 0, 0.06),
+            0 8px 24px rgba(0, 0, 0, 0.08),
+            0 0 0 1px rgba(0, 0, 0, 0.03) inset;
+    }
+
+    /* ── Dark mode card ── */
+    :global(.dark) .feature-card {
+        background: rgba(15, 23, 42, 0.85);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 
+            0 1px 3px rgba(0, 0, 0, 0.2),
+            0 8px 24px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    }
+
+    /* Accent top-line */
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 0%;
+        background: linear-gradient(90deg, var(--brand-primary, #3b82f6), var(--brand-light, #60a5fa), transparent);
+        border-radius: 2px;
+        transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    }
+
+    .feature-overlay.is-visible .feature-card::before {
+        width: 100%;
+    }
+
+    /* Icon */
+    .feature-card__icon {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        color: var(--brand-primary, #3b82f6);
+    }
+
+    :global(.dark) .feature-card__icon {
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.25);
+    }
+
+    /* Text — Light mode */
+    .feature-card__text h3 {
+        color: #1e293b; /* brand-dark / slate-800 */
+        font-size: 0.88rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .feature-card__text p {
+        color: #64748b; /* slate-500 */
+        font-size: 0.76rem;
+        line-height: 1.5;
+        margin: 4px 0 0;
+    }
+
+    /* Text — Dark mode */
+    :global(.dark) .feature-card__text h3 {
+        color: #fff;
+    }
+
+    :global(.dark) .feature-card__text p {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Pin dot */
+    .feature-card__pin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 4px;
+        padding-left: 28px;
+    }
+
+    .feature-card__pin::before {
+        content: '';
+        width: 1px;
+        height: 12px;
+        background: linear-gradient(to bottom, var(--brand-primary, #3b82f6), transparent);
+        opacity: 0.5;
+    }
+
+    .feature-card__pin::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--brand-primary, #3b82f6);
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .feature-overlay.is-visible .feature-card__pin::after {
+        animation: dotPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+        0%, 100% { box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); }
+        50% { box-shadow: 0 0 16px rgba(59, 130, 246, 0.7); }
+    }
+
+    /* ═══════════════════════════════════
+       Progress Dots — theme-aware
+       ═══════════════════════════════════ */
+    .progress-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.12);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    :global(.dark) .progress-dot {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .progress-dot.is-active {
+        background: var(--brand-primary, #3b82f6);
+        transform: scale(1.6);
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+    }
+
+    .progress-dot.is-past {
+        background: rgba(59, 130, 246, 0.35);
+    }
+
+    /* ═══════════════════════════════════
+       Mobile
+       ═══════════════════════════════════ */
+    @media (max-width: 768px) {
+        .feature-overlay {
+            max-width: 200px;
+        }
+        .feature-card {
+            padding: 10px 12px;
+            gap: 8px;
+        }
+        .feature-card__icon {
+            width: 32px;
+            height: 32px;
+        }
+        .feature-card__icon svg {
+            width: 16px;
+            height: 16px;
+        }
+        .feature-card__text p {
+            display: none;
+        }
+        .feature-card__text h3 {
+            font-size: 0.78rem;
+        }
+        .feature-card__pin {
+            display: none;
+        }
+        .features-title-card {
+            padding: 2rem 1.5rem !important;
+        }
+    }
+</style>
+
 
 <script>
     import { gsap } from "gsap";
@@ -99,28 +509,170 @@ const features = [
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial check to prevent FOUC (Flash of Unstyled Content) if JS fails
-    gsap.set(".feature-card", {
-        y: 50,
-        opacity: 0,
-    });
+    function initScrollVideo() {
+        const video = document.getElementById("scroll-video") as HTMLVideoElement;
+        const panel = document.getElementById("video-pin-panel");
+        const section = document.getElementById("features");
+        const intro = document.getElementById("features-intro");
+        const featureEls = document.querySelectorAll(".feature-overlay");
+        const dots = document.querySelectorAll(".progress-dot");
+
+        if (!video || !panel || !section) return;
+
+        // Hidden canvas for frame capture
+        const captureCanvas = document.createElement("canvas");
+        const captureCtx = captureCanvas.getContext("2d");
+
+        function captureFrameToBackground() {
+            if (!captureCtx || !video.videoWidth) return;
+            captureCanvas.width = video.videoWidth;
+            captureCanvas.height = video.videoHeight;
+            captureCtx.drawImage(video, 0, 0, captureCanvas.width, captureCanvas.height);
+            try {
+                const dataUrl = captureCanvas.toDataURL("image/jpeg", 0.85);
+                section!.style.backgroundImage = `url(${dataUrl})`;
+                section!.style.backgroundSize = "cover";
+                section!.style.backgroundPosition = "center bottom";
+                section!.style.backgroundRepeat = "no-repeat";
+                // CRITICAL: fixed attachment so the bg sizes to viewport,
+                // not to the section (which is ~500vh due to pinSpacing)
+                section!.style.backgroundAttachment = "fixed";
+            } catch(e) {
+                // Canvas tainted or other error — fail silently
+            }
+        }
+
+        const onReady = () => {
+            const duration = video.duration;
+            if (!duration || isNaN(duration)) return;
+
+            const totalFeatures = featureEls.length;
+            const slice = 1 / totalFeatures;
+            let frameCaptured = false;
+
+            ScrollTrigger.create({
+                trigger: panel,
+                start: "top top",
+                end: "+=400%",
+                pin: true,
+                pinSpacing: true,
+                anticipatePin: 1,
+                scrub: 0.5,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+
+                    // Scrub video
+                    const targetTime = progress * duration;
+                    if (Math.abs(video.currentTime - targetTime) > 0.03) {
+                        video.currentTime = targetTime;
+                    }
+
+                    // Capture last frame near the end so it's ready
+                    if (progress > 0.9 && !frameCaptured) {
+                        captureFrameToBackground();
+                        frameCaptured = true;
+                    }
+                    if (progress < 0.85) {
+                        frameCaptured = false;
+                    }
+
+                    // Fade out intro title card
+                    if (intro) {
+                        const introFade = Math.max(0, 1 - progress / 0.12);
+                        intro.style.opacity = String(introFade);
+                        intro.style.transform = `translateY(${-progress * 100}px) scale(${1 - progress * 0.05})`;
+                    }
+
+                    // Reveal features progressively
+                    featureEls.forEach((el, i) => {
+                        const threshold = (i + 1) * slice * 0.65;
+                        if (progress >= threshold) {
+                            el.classList.add("is-visible");
+                        } else {
+                            el.classList.remove("is-visible");
+                        }
+                    });
+
+                    // Progress dots
+                    const activeIdx = Math.min(
+                        Math.floor(progress / slice),
+                        totalFeatures - 1
+                    );
+                    dots.forEach((dot, i) => {
+                        dot.classList.remove("is-active", "is-past");
+                        if (i === activeIdx && progress > 0.02) {
+                            dot.classList.add("is-active");
+                        } else if (i < activeIdx) {
+                            dot.classList.add("is-past");
+                        }
+                    });
+                },
+                onLeave: () => {
+                    // Capture final frame as section background
+                    captureFrameToBackground();
+                    featureEls.forEach(el => el.classList.add("is-visible"));
+                },
+                onEnterBack: () => {
+                    // Clear background — video is live again
+                    section.style.backgroundImage = "";
+                    section.style.backgroundAttachment = "";
+                },
+            });
+        };
+
+        if (video.readyState >= 1) {
+            onReady();
+        } else {
+            video.addEventListener("loadedmetadata", onReady, { once: true });
+        }
+
+        video.load();
+    }
+
+    function initHowItWorks() {
+        const steps = gsap.utils.toArray<HTMLElement>(".step-card");
+        steps.forEach((step) => {
+            gsap.to(step, {
+                scrollTrigger: {
+                    trigger: step,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+            });
+
+            const parallaxBg = step.querySelector(".parallax-bg");
+            if (parallaxBg) {
+                gsap.from(parallaxBg, {
+                    scrollTrigger: { trigger: step, scrub: true },
+                    y: -50,
+                    ease: "none",
+                });
+            }
+        });
+
+        gsap.to("#scroll-animation-wrapper", {
+            scrollTrigger: {
+                trigger: "#how-it-works",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+            },
+            y: 500,
+            rotation: 15,
+            ease: "none",
+        });
+    }
 
     try {
-        gsap.to(".feature-card", {
-            scrollTrigger: {
-                trigger: "#features",
-                start: "top 85%", // Trigger slightly earlier
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power2.out",
-            clearProps: "all", // Remove inline styles after animation to avoid conflict
-        });
+        initScrollVideo();
+        initHowItWorks();
     } catch (e) {
-        console.error("GSAP Error:", e);
-        // Fallback if animation fails
-        gsap.set(".feature-card", { opacity: 1, y: 0 });
+        console.error("Animation init error:", e);
+        document.querySelectorAll(".feature-overlay").forEach(el => el.classList.add("is-visible"));
+        document.querySelectorAll(".step-card").forEach(el => (el as HTMLElement).style.opacity = "1");
     }
 </script>
