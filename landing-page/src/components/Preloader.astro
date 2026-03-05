@@ -1,0 +1,168 @@
+---
+---
+
+<div id="preloader" class="fixed inset-0 z-[100] bg-brand-dark flex items-center justify-center overflow-hidden">
+    <div id="preloader-content" class="relative flex flex-col items-center">
+        <!-- Truck SVG Container -->
+        <div id="preloader-truck" class="w-32 h-32 md:w-48 md:h-48 mb-4 relative z-20">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-full h-full"
+            >
+                <path
+                    d="M1 18h18c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2z"
+                    fill="#1F6AE1"
+                    stroke="#A9C9FF"
+                    stroke-width="0.5"></path>
+                <path d="M15 7h4v4h-4z" fill="#A9C9FF"></path>
+                <circle
+                    cx="5.5"
+                    cy="18.5"
+                    r="2.5"
+                    fill="#0A2540"
+                    stroke="white"
+                    stroke-width="0.5"></circle>
+                <circle
+                    cx="15.5"
+                    cy="18.5"
+                    r="2.5"
+                    fill="#0A2540"
+                    stroke="white"
+                    stroke-width="0.5"></circle>
+            </svg>
+            <!-- Speed streaks (the 'whisk' effect?) -->
+            <div class="speed-streaks absolute top-1/2 right-full h-1 bg-gradient-to-l from-brand-primary to-transparent w-full origin-right scale-x-0 opacity-0"></div>
+            <div class="speed-streaks absolute top-1/3 right-full h-1 bg-gradient-to-l from-brand-light to-transparent w-3/4 origin-right scale-x-0 opacity-0"></div>
+            <div class="speed-streaks absolute top-2/3 right-full h-1 bg-gradient-to-l from-brand-primary to-transparent w-1/2 origin-right scale-x-0 opacity-0"></div>
+        </div>
+
+        <!-- Logo Text -->
+        <div id="preloader-logo" class="relative overflow-hidden h-12 md:h-20 flex items-center">
+            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter opacity-0 translate-y-full">
+                Cargo<span class="text-brand-primary">SnS</span>
+            </h1>
+        </div>
+    </div>
+    
+    <!-- Road Line -->
+    <div id="preloader-road" class="absolute bottom-1/4 left-0 w-full h-[2px] bg-brand-light/20 scale-x-0 origin-left"></div>
+</div>
+
+<style>
+    #preloader {
+        pointer-events: all;
+    }
+    
+    .speed-streaks {
+        filter: blur(2px);
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+
+    function startPreloader() {
+        const preloader = document.getElementById("preloader");
+        const truck = document.getElementById("preloader-truck");
+        const logo = document.querySelector("#preloader-logo h1");
+        const road = document.getElementById("preloader-road");
+        const streaks = document.querySelectorAll(".speed-streaks");
+        const navbarLogo = document.querySelector("#navbar img"); // Target the logo we just added
+
+        if (!preloader || !truck || !logo) return;
+
+        // Block scrolling
+        document.body.style.overflow = "hidden";
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                preloader.style.pointerEvents = "none";
+                document.body.style.overflow = "auto";
+                // Trigger any entry animations on the main page
+                document.dispatchEvent(new CustomEvent("preloaderComplete"));
+            }
+        });
+
+        // 1. Initial State
+        tl.set(truck, { x: "-150vw" });
+        tl.set(road, { scaleX: 0 });
+
+        // 2. Road appears
+        tl.to(road, { scaleX: 1, duration: 0.8, ease: "power2.inOut" });
+
+        // 3. Truck drives in and stops in center
+        tl.to(truck, { 
+            x: 0, 
+            duration: 1.5, 
+            ease: "power3.out",
+        }, "-=0.4");
+
+        // 4. Streaks effect while driving
+        tl.to(streaks, {
+            scaleX: 1,
+            opacity: 0.6,
+            stagger: 0.1,
+            duration: 0.5,
+            ease: "power1.inOut"
+        }, "-=1.5");
+        
+        tl.to(streaks, {
+            scaleX: 0,
+            opacity: 0,
+            duration: 0.5,
+        }, "-=0.5");
+
+        // 5. Logo appears (reveal)
+        tl.to(logo, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }, "-=0.3");
+
+        // 6. Pause for a moment
+        tl.to({}, { duration: 1 });
+
+        // 7. Transition to the real logo position
+        // If navbarLogo exists, we can calculate its position
+        if (navbarLogo) {
+            const rect = navbarLogo.getBoundingClientRect();
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            const targetX = rect.left + rect.width / 2 - centerX;
+            const targetY = rect.top + rect.height / 2 - centerY;
+
+            tl.to("#preloader-content", {
+                x: targetX,
+                y: targetY,
+                scale: 0.2, // Logo is small in navbar
+                opacity: 0,
+                duration: 1,
+                ease: "power4.inOut"
+            });
+        } else {
+            // Fallback if logo not found
+            tl.to(preloader, {
+                opacity: 0,
+                duration: 1,
+                ease: "power2.inOut"
+            });
+        }
+
+        // 8. Fade out the background
+        tl.to(preloader, {
+            opacity: 0,
+            duration: 0.5
+        }, "-=0.5");
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startPreloader);
+    } else {
+        startPreloader();
+    }
+</script>

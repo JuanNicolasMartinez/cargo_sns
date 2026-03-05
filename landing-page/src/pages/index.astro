@@ -5,9 +5,11 @@ import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
 import Footer from "../components/Footer.astro";
 import Truck from "../components/Truck.astro";
+import Preloader from "../components/Preloader.astro";
 ---
 
 <Layout title="CargoSnS | Almacenamiento y Logística Inteligente">
+	<Preloader />
     <Navbar />
     <main class="overflow-x-hidden">
         <!-- Hero Section -->
@@ -72,7 +74,16 @@ import Truck from "../components/Truck.astro";
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // --- ANIMATIONS ---
+	// --- PRELOADER COORDINATION ---
+	document.addEventListener("preloaderComplete", () => {
+		gsap.to("#main-content", {
+			opacity: 1,
+			duration: 1.5,
+			ease: "power2.out"
+		});
+	});
+
+	// --- ANIMATIONS ---
 
     // Truck animation is handled inside the Truck component
 
