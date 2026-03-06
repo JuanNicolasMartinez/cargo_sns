@@ -7,11 +7,11 @@
     <!-- ── TOP: Text content centered ── -->
     <div class="relative z-10 pt-16 pb-4 flex flex-col items-center text-center px-6 shrink-0" id="hero-content">
         <h1 class="text-5xl lg:text-7xl font-bold leading-tight text-brand-dark dark:text-white max-w-4xl">
-            Almacena y Transporta<br/>
-            <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-brand-light">Sin Límites</span>
+            <span data-i18n="hero_h1_line1">Almacena y Transporta</span><br/>
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-brand-light" data-i18n="hero_h1_line2">Sin Límites</span>
         </h1>
 
-        <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
+        <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed" data-i18n="hero_subtitle">
             Conecta con espacios seguros y transportistas confiables en tiempo real.
             La solución inteligente para optimizar tu carga y espacio.
         </p>
@@ -19,17 +19,17 @@
         <div class="mt-6 flex flex-wrap justify-center gap-4">
             <button data-modal="buscar"
                 class="hero-cta-btn px-8 py-4 bg-brand-primary hover:bg-brand-dark text-white font-bold rounded-xl  transition-all hover:-translate-y-1 hover:scale-105 flex items-center gap-2">
-                Buscar Espacio
+                <span data-i18n="hero_btn_buscar">Buscar Espacio</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
             </button>
             <button data-modal="publicar"
                 class="hero-cta-btn px-8 py-4 bg-brand-light/20 hover:bg-brand-light/30 text-brand-primary dark:text-brand-light border border-brand-light/40 hover:border-brand-light/70 font-bold rounded-xl shadow-lg transition-all hover:-translate-y-1 flex items-center gap-2 group">
-                Publicar mi espacio
+                <span data-i18n="hero_btn_publicar">Publicar mi espacio</span>
                 <span class="group-hover:translate-x-1 transition-transform">→</span>
             </button>
             <button data-modal="transportista"
                 class="hero-cta-btn px-8 py-4 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-brand-dark dark:text-white border border-gray-200 dark:border-slate-700 font-bold rounded-xl shadow-lg transition-all hover:-translate-y-1 flex items-center gap-2 group">
-                Soy Transportista
+                <span data-i18n="hero_btn_transportista">Soy Transportista</span>
                 <span class="group-hover:translate-x-1 transition-transform">→</span>
             </button>
         </div>
@@ -40,7 +40,7 @@
                 <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-slate-500 border-2 border-white dark:border-slate-800"></div>
                 <div class="w-8 h-8 rounded-full bg-gray-400 dark:bg-slate-400 border-2 border-white dark:border-slate-800"></div>
             </div>
-            <p>Uniéndose a +200 empresas y conductores hoy.</p>
+            <p data-i18n="hero_social_proof">Uniéndose a +200 empresas y conductores hoy.</p>
         </div>
     </div>
 
@@ -75,14 +75,14 @@
             <div class="modal-bubble">
                 <button class="modal-close" aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                 <div class="modal-icon bg-brand-primary/10 text-brand-primary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
-                <h3 id="modal-buscar-title" class="modal-title">Buscar Espacio</h3>
-                <p class="modal-desc">Encuentra bodegas verificadas y seguras cerca de ti. Disponible en tu plataforma favorita.</p>
+                <h3 id="modal-buscar-title" class="modal-title" data-i18n="modal_buscar_title">Buscar Espacio</h3>
+                <p class="modal-desc" data-i18n="modal_buscar_desc">Encuentra bodegas verificadas y seguras cerca de ti. Disponible en tu plataforma favorita.</p>
                 <div class="modal-store-btns">
-                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label">Descargar en</span><span class="store-name">App Store</span></div></a>
-                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label">Disponible en</span><span class="store-name">Google Play</span></div></a>
+                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label" data-i18n="modal_store_download">Descargar en</span><span class="store-name">App Store</span></div></a>
+                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label" data-i18n="modal_store_available">Disponible en</span><span class="store-name">Google Play</span></div></a>
                 </div>
-                <div class="modal-divider"><span>o</span></div>
-                <a href="#" class="modal-web-btn">Empezar en Web App →</a>
+                <div class="modal-divider"><span data-i18n="modal_or">o</span></div>
+                <a href="#" class="modal-web-btn" data-i18n="modal_web_btn">Empezar en Web App →</a>
             </div>
         </div>
         <!-- Publicar Espacio -->
@@ -90,14 +90,14 @@
             <div class="modal-bubble">
                 <button class="modal-close" aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                 <div class="modal-icon bg-brand-light/20 text-brand-primary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
-                <h3 id="modal-publicar-title" class="modal-title">Publicar mi Espacio</h3>
-                <p class="modal-desc">Monetiza tus m² ociosos publicando tu bodega en minutos. Gestiona todo desde la app.</p>
+                <h3 id="modal-publicar-title" class="modal-title" data-i18n="modal_publicar_title">Publicar mi Espacio</h3>
+                <p class="modal-desc" data-i18n="modal_publicar_desc">Monetiza tus m² ociosos publicando tu bodega en minutos. Gestiona todo desde la app.</p>
                 <div class="modal-store-btns">
-                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label">Descargar en</span><span class="store-name">App Store</span></div></a>
-                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label">Disponible en</span><span class="store-name">Google Play</span></div></a>
+                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label" data-i18n="modal_store_download">Descargar en</span><span class="store-name">App Store</span></div></a>
+                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label" data-i18n="modal_store_available">Disponible en</span><span class="store-name">Google Play</span></div></a>
                 </div>
-                <div class="modal-divider"><span>o</span></div>
-                <a href="#" class="modal-web-btn">Empezar en Web App →</a>
+                <div class="modal-divider"><span data-i18n="modal_or">o</span></div>
+                <a href="#" class="modal-web-btn" data-i18n="modal_web_btn">Empezar en Web App →</a>
             </div>
         </div>
         <!-- Soy Transportista -->
@@ -105,14 +105,14 @@
             <div class="modal-bubble">
                 <button class="modal-close" aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                 <div class="modal-icon bg-green-500/10 text-green-500"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect width="7" height="7" x="14" y="10" rx="1"/><path d="M14 14.5V18a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3.5"/><circle cx="7" cy="17" r="2"/><circle cx="19" cy="21" r="2"/></svg></div>
-                <h3 id="modal-transportista-title" class="modal-title">Soy Transportista</h3>
-                <p class="modal-desc">Recibe solicitudes de carga, optimiza tus rutas y aumenta tus ingresos. Todo desde tu celular.</p>
+                <h3 id="modal-transportista-title" class="modal-title" data-i18n="modal_transportista_title">Soy Transportista</h3>
+                <p class="modal-desc" data-i18n="modal_transportista_desc">Recibe solicitudes de carga, optimiza tus rutas y aumenta tus ingresos. Todo desde tu celular.</p>
                 <div class="modal-store-btns">
-                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label">Descargar en</span><span class="store-name">App Store</span></div></a>
-                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label">Disponible en</span><span class="store-name">Google Play</span></div></a>
+                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label" data-i18n="modal_store_download">Descargar en</span><span class="store-name">App Store</span></div></a>
+                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label" data-i18n="modal_store_available">Disponible en</span><span class="store-name">Google Play</span></div></a>
                 </div>
-                <div class="modal-divider"><span>o</span></div>
-                <a href="#" class="modal-web-btn">Empezar en Web App →</a>
+                <div class="modal-divider"><span data-i18n="modal_or">o</span></div>
+                <a href="#" class="modal-web-btn" data-i18n="modal_web_btn">Empezar en Web App →</a>
             </div>
         </div>
     </template>
