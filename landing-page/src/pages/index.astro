@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
+import HowItWorks from "../components/HowItWorks.astro";
 import Footer from "../components/Footer.astro";
 import Truck from "../components/Truck.astro";
 import Preloader from "../components/Preloader.astro";
@@ -20,10 +21,13 @@ import Preloader from "../components/Preloader.astro";
             </div>
         </div>
 
-        <!-- Features Section (Features + How It Works) -->
+        <!-- Features Section -->
         <div class="features-section relative z-20">
             <Features />
         </div>
+
+        <!-- How It Works Section -->
+        <HowItWorks />
 
         <!-- Map CTA Section -->
         <section class="cta-section py-24 relative overflow-hidden z-10">
@@ -103,31 +107,7 @@ import Preloader from "../components/Preloader.astro";
         });
     });
 
-    // 3. How It Works Steps (Staggered with 3D effect)
-    const steps = document.querySelectorAll(".step-card");
-    steps.forEach((step, i) => {
-        const direction = i % 2 === 0 ? -100 : 100; // Alternate slide direction
-
-        gsap.fromTo(
-            step,
-            { opacity: 0, x: direction, rotateY: direction > 0 ? 15 : -15 },
-            {
-                scrollTrigger: {
-                    trigger: step,
-                    start: "top 75%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse", // Re-adds reveal on scroll back
-                },
-                opacity: 1,
-                x: 0,
-                rotateY: 0,
-                duration: 1.2,
-                ease: "power3.out",
-            },
-        );
-    });
-
-    // 4. CTA Section Reveal
+    // 3. CTA Section Reveal
     const ctaTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".cta-section",

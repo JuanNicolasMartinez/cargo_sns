@@ -5,10 +5,10 @@
 <section class="hero-section relative overflow-hidden h-screen flex flex-col">
 
     <!-- Ambient background glows -->
-    <div class="absolute inset-0 z-0 pointer-events-none">
+    <!-- <div class="absolute inset-0 z-0 pointer-events-none">
         <div class="absolute top-[15%] left-[20%] w-96 h-96 bg-brand-primary/15 rounded-full blur-[120px] animate-pulse"></div>
         <div class="absolute top-[10%] right-[15%] w-72 h-72 bg-brand-light/20 rounded-full blur-[100px] animate-pulse delay-1000"></div>
-    </div>
+    </div> -->
 
     <!-- ── TOP: Text content centered ── -->
     <div class="relative z-10 pt-16 pb-4 flex flex-col items-center text-center px-6 shrink-0" id="hero-content">
@@ -29,7 +29,7 @@
 
         <div class="mt-6 flex flex-wrap justify-center gap-4">
             <button data-modal="buscar"
-                class="hero-cta-btn px-8 py-4 bg-brand-primary hover:bg-brand-dark text-white font-bold rounded-xl shadow-xl shadow-brand-primary/30 transition-all hover:-translate-y-1 hover:scale-105 flex items-center gap-2">
+                class="hero-cta-btn px-8 py-4 bg-brand-primary hover:bg-brand-dark text-white font-bold rounded-xl  transition-all hover:-translate-y-1 hover:scale-105 flex items-center gap-2">
                 Buscar Espacio
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
             </button>
@@ -56,20 +56,25 @@
     </div>
 
     <!-- ── BOTTOM: Phone video full-width ── -->
+    <!-- ── BOTTOM: Phone video full-width ── -->
     <div class="relative z-10 w-full flex justify-center flex-1 min-h-0" id="hero-visual">
-        <!-- Side glow orbs -->
         <div class="absolute bottom-[20%] left-[8%] w-52 h-52 bg-brand-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
         <div class="absolute bottom-[15%] right-[8%] w-44 h-44 bg-brand-light/20 rounded-full blur-[70px] pointer-events-none"></div>
 
         <div class="hero-phone-wrap">
             <video
-                id="hero-phone-video-src"
-                src="/videos/Hand_swiping_phone_screen_animation.mp4"
-                muted playsinline preload="auto"
+                id="hero-video-light"
+                src="/videos/video_app_clean.webm"
+                muted playsinline autoplay loop
+                class="hero-phone-canvas"
+            ></video>
+            <video
+                id="hero-video-dark"
+                src="/videos/dark_video_app.webm"
+                muted playsinline autoplay loop
+                class="hero-phone-canvas"
                 style="display:none"
             ></video>
-            <canvas id="hero-phone-canvas" class="hero-phone-canvas"></canvas>
-            <!-- Bottom fade blends into page background -->
             <div class="hero-phone-bottom-fade"></div>
         </div>
     </div>
@@ -146,6 +151,17 @@
         z-index: 2;
     }
 
+    /* Light mode: fondo blanco/gris → multiply lo hace transparente */
+    #hero-video-light {
+        mix-blend-mode: multiply;
+    }
+
+    /* Dark mode: fondo azul oscuro → screen lo elimina */
+    #hero-video-dark {
+        mix-blend-mode: screen;
+        border-radius: 24px;
+    }
+
     /* Bottom fade — dissolves the hard crop of hand/phone bottom */
     .hero-phone-bottom-fade {
         position: absolute;
@@ -153,10 +169,7 @@
         left: 0;
         right: 0;
         height: 38%;
-        background: linear-gradient(to top,
-            var(--fade-color, #F2F4F7) 0%,
-            transparent 100%
-        );
+        
         z-index: 3;
         pointer-events: none;
     }
@@ -433,6 +446,32 @@
 
 <script>
     import { gsap } from "gsap";
+
+    // ── Theme-aware video swap ────────────────────────────
+    const videoLight = document.getElementById("hero-video-light") as HTMLVideoElement;
+    const videoDark  = document.getElementById("hero-video-dark")  as HTMLVideoElement;
+
+    function applyThemeVideo() {
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark) {
+            videoLight.style.display = "none";
+            videoDark.style.display  = "block";
+            if (videoDark.paused) videoDark.play();
+        } else {
+            videoDark.style.display  = "none";
+            videoLight.style.display = "block";
+            if (videoLight.paused) videoLight.play();
+        }
+    }
+
+    // Apply on load
+    applyThemeVideo();
+
+    // Observe class changes on <html> for runtime theme toggles
+    new MutationObserver(applyThemeVideo).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+    });
 
     // Hero Animations
     const tl = gsap.timeline();
