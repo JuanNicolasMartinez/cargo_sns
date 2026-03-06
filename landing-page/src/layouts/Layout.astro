@@ -45,10 +45,20 @@ const {
             }
 
             window.localStorage.setItem("theme", theme);
+
+            // Language initialization
+            const savedLang = localStorage.getItem("lang") || "es";
+            document.documentElement.setAttribute("data-lang", savedLang);
         </script>
     </head>
     <body class="bg-[#EBEDF0] dark:bg-[#00000E] text-brand-dark dark:text-slate-50 overflow-x-hidden transition-colors duration-300">
         <slot />
+
+        <script>
+            import { translations } from "../i18n/translations";
+            (window as any).__i18n = translations;
+            window.dispatchEvent(new Event("i18n-ready"));
+        </script>
 
         <script>
             import Lenis from "lenis";
