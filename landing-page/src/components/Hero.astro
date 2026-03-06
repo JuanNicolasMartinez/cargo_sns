@@ -2,179 +2,434 @@
 
 ---
 
-<section
-    class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
->
-    <!-- Background Elements -->
+<section class="hero-section relative overflow-hidden h-screen flex flex-col">
+
+    <!-- Ambient background glows -->
     <div class="absolute inset-0 z-0 pointer-events-none">
-        <div
-            class="absolute top-[20%] left-[10%] w-72 h-72 bg-brand-primary/20 rounded-full blur-[100px] animate-pulse"
-        >
+        <div class="absolute top-[15%] left-[20%] w-96 h-96 bg-brand-primary/15 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute top-[10%] right-[15%] w-72 h-72 bg-brand-light/20 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+    </div>
+
+    <!-- ── TOP: Text content centered ── -->
+    <div class="relative z-10 pt-16 pb-4 flex flex-col items-center text-center px-6 shrink-0" id="hero-content">
+        <!-- <div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-sm font-medium mb-4">
+            <span class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"></span>
+            La revolución logística está aquí
+        </div> -->
+
+        <h1 class="text-4xl lg:text-6xl font-bold leading-tight text-brand-dark dark:text-white max-w-4xl">
+            Almacena y Transporta<br/>
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-brand-light">Sin Límites</span>
+        </h1>
+
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
+            Conecta con espacios seguros y transportistas confiables en tiempo real.
+            La solución inteligente para optimizar tu carga y espacio.
+        </p>
+
+        <div class="mt-6 flex flex-wrap justify-center gap-4">
+            <button data-modal="buscar"
+                class="hero-cta-btn px-8 py-4 bg-brand-primary hover:bg-brand-dark text-white font-bold rounded-xl shadow-xl shadow-brand-primary/30 transition-all hover:-translate-y-1 hover:scale-105 flex items-center gap-2">
+                Buscar Espacio
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <button data-modal="publicar"
+                class="hero-cta-btn px-8 py-4 bg-brand-light/20 hover:bg-brand-light/30 text-brand-primary dark:text-brand-light border border-brand-light/40 hover:border-brand-light/70 font-bold rounded-xl shadow-lg transition-all hover:-translate-y-1 flex items-center gap-2 group">
+                Publicar mi espacio
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+            <button data-modal="transportista"
+                class="hero-cta-btn px-8 py-4 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-brand-dark dark:text-white border border-gray-200 dark:border-slate-700 font-bold rounded-xl shadow-lg transition-all hover:-translate-y-1 flex items-center gap-2 group">
+                Soy Transportista
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </button>
         </div>
-        <div
-            class="absolute bottom-[20%] right-[10%] w-96 h-96 bg-brand-light/30 rounded-full blur-[120px] animate-pulse delay-1000"
-        >
+
+        <div class="mt-6 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <div class="flex -space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-slate-600 border-2 border-white dark:border-slate-800"></div>
+                <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-slate-500 border-2 border-white dark:border-slate-800"></div>
+                <div class="w-8 h-8 rounded-full bg-gray-400 dark:bg-slate-400 border-2 border-white dark:border-slate-800"></div>
+            </div>
+            <p>Uniéndose a +200 empresas y conductores hoy.</p>
         </div>
     </div>
 
-    <div
-        class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center"
-    >
-        <div class="space-y-8" id="hero-content">
-            <div
-                class="inline-flex items-center px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-sm font-medium animate-fade-in-up"
-            >
-                <span
-                    class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"
-                ></span>
-                La revolución logística está aquí
-            </div>
+    <!-- ── BOTTOM: Phone video full-width ── -->
+    <div class="relative z-10 w-full flex justify-center flex-1 min-h-0" id="hero-visual">
+        <!-- Side glow orbs -->
+        <div class="absolute bottom-[20%] left-[8%] w-52 h-52 bg-brand-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="absolute bottom-[15%] right-[8%] w-44 h-44 bg-brand-light/20 rounded-full blur-[70px] pointer-events-none"></div>
 
-            <h1
-                class="text-5xl lg:text-7xl font-bold leading-tight text-brand-dark dark:text-white"
-            >
-                Almacena y Transporta <br />
-                <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-light"
-                    >Sin Límites</span
-                >
-            </h1>
-
-            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-xl leading-relaxed">
-                Conecta con espacios seguros y transportistas confiables en
-                tiempo real. La solución inteligente para optimizar tu carga y
-                espacio.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                <a
-                    href="#"
-                    class="px-8 py-4 bg-brand-primary hover:bg-brand-dark text-white font-bold rounded-xl shadow-xl shadow-brand-primary/30 transition-all transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2"
-                >
-                    Buscar Espacio
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <a
-                    href="#"
-                    class="px-8 py-4 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-brand-dark dark:text-white border border-gray-200 dark:border-slate-700 font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
-                >
-                    Soy Transportista
-                    <span class="group-hover:translate-x-1 transition-transform"
-                        >→</span
-                    >
-                </a>
-            </div>
-
-            <div class="pt-8 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                <div class="flex -space-x-2">
-                    <div
-                        class="w-8 h-8 rounded-full bg-gray-200 dark:bg-slate-600 border-2 border-white dark:border-slate-800"
-                    >
-                    </div>
-                    <div
-                        class="w-8 h-8 rounded-full bg-gray-300 dark:bg-slate-500 border-2 border-white dark:border-slate-800"
-                    >
-                    </div>
-                    <div
-                        class="w-8 h-8 rounded-full bg-gray-400 dark:bg-slate-400 border-2 border-white dark:border-slate-800"
-                    >
-                    </div>
-                </div>
-                <p>Uniéndose a +200 empresas y conductores hoy.</p>
-            </div>
-        </div>
-
-        <div
-            class="relative hidden lg:block h-[600px] w-full perspective-1000"
-            id="hero-visual"
-        >
-            <!-- Main Hero Image (Warehouse) -->
-            <div
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]"
-            >
-                <div
-                    class="absolute top-0 right-0 w-80 h-96 rounded-3xl overflow-hidden shadow-2xl z-20 transform rotate-6 animate-float border-4 border-white/20"
-                >
-                    <img
-                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop"
-                        alt="Smart Warehouse"
-                        class="w-full h-full object-cover"
-                    />
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent flex flex-col justify-end p-6"
-                    >
-                        <span class="text-white font-bold text-lg"
-                            >Almacenamiento Inteligente</span
-                        >
-                        <span class="text-brand-light text-sm"
-                            >Gestionado por IA</span
-                        >
-                    </div>
-                </div>
-
-                <!-- Secondary Image (Transport) -->
-                <div
-                    class="absolute bottom-10 -left-10 w-72 h-56 rounded-3xl overflow-hidden shadow-2xl z-30 transform -rotate-6 hover:rotate-0 transition-transform duration-500 border-4 border-white/20 glass-dark"
-                >
-                    <div class="relative h-full w-full">
-                        <img
-                            src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1000&auto=format&fit=crop"
-                            alt="Transport"
-                            class="w-full h-full object-cover opacity-60"
-                        />
-                        <div
-                            class="absolute inset-0 flex flex-col justify-center items-center p-4 text-center"
-                        >
-                            <div
-                                class="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center mb-2 shadow-lg hover:scale-110 transition-transform"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-white"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    ><path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                                    ></path></svg
-                                >
-                            </div>
-                            <h3 class="text-white font-bold text-xl">
-                                +200 Rutas
-                            </h3>
-                            <p class="text-brand-light text-sm">
-                                Disponibles ahora
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Decorative Elements -->
-                <div
-                    class="absolute -top-10 -right-10 w-32 h-32 bg-brand-primary/20 backdrop-blur-xl rounded-full animate-pulse z-10"
-                >
-                </div>
-                <div
-                    class="absolute bottom-20 right-20 w-24 h-24 bg-brand-light/20 backdrop-blur-xl rounded-full z-10 animate-float delay-700"
-                >
-                </div>
-            </div>
+        <div class="hero-phone-wrap">
+            <video
+                id="hero-phone-video-src"
+                src="/videos/Hand_swiping_phone_screen_animation.mp4"
+                muted playsinline preload="auto"
+                style="display:none"
+            ></video>
+            <canvas id="hero-phone-canvas" class="hero-phone-canvas"></canvas>
+            <!-- Bottom fade blends into page background -->
+            <div class="hero-phone-bottom-fade"></div>
         </div>
     </div>
+
+    <!-- ── Modals (moved to body via JS) ── -->
+    <template id="hero-modals-template">
+        <div id="hero-modal-backdrop" class="modal-backdrop" aria-hidden="true"></div>
+        <!-- Buscar Espacio -->
+        <div id="modal-buscar" class="hero-modal" role="dialog" aria-modal="true" aria-labelledby="modal-buscar-title">
+            <div class="modal-bubble">
+                <button class="modal-close" aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                <div class="modal-icon bg-brand-primary/10 text-brand-primary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+                <h3 id="modal-buscar-title" class="modal-title">Buscar Espacio</h3>
+                <p class="modal-desc">Encuentra bodegas verificadas y seguras cerca de ti. Disponible en tu plataforma favorita.</p>
+                <div class="modal-store-btns">
+                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label">Descargar en</span><span class="store-name">App Store</span></div></a>
+                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label">Disponible en</span><span class="store-name">Google Play</span></div></a>
+                </div>
+                <div class="modal-divider"><span>o</span></div>
+                <a href="#" class="modal-web-btn">Empezar en Web App →</a>
+            </div>
+        </div>
+        <!-- Publicar Espacio -->
+        <div id="modal-publicar" class="hero-modal" role="dialog" aria-modal="true" aria-labelledby="modal-publicar-title">
+            <div class="modal-bubble">
+                <button class="modal-close" aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                <div class="modal-icon bg-brand-light/20 text-brand-primary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
+                <h3 id="modal-publicar-title" class="modal-title">Publicar mi Espacio</h3>
+                <p class="modal-desc">Monetiza tus m² ociosos publicando tu bodega en minutos. Gestiona todo desde la app.</p>
+                <div class="modal-store-btns">
+                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label">Descargar en</span><span class="store-name">App Store</span></div></a>
+                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label">Disponible en</span><span class="store-name">Google Play</span></div></a>
+                </div>
+                <div class="modal-divider"><span>o</span></div>
+                <a href="#" class="modal-web-btn">Empezar en Web App →</a>
+            </div>
+        </div>
+        <!-- Soy Transportista -->
+        <div id="modal-transportista" class="hero-modal" role="dialog" aria-modal="true" aria-labelledby="modal-transportista-title">
+            <div class="modal-bubble">
+                <button class="modal-close" aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                <div class="modal-icon bg-green-500/10 text-green-500"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect width="7" height="7" x="14" y="10" rx="1"/><path d="M14 14.5V18a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3.5"/><circle cx="7" cy="17" r="2"/><circle cx="19" cy="21" r="2"/></svg></div>
+                <h3 id="modal-transportista-title" class="modal-title">Soy Transportista</h3>
+                <p class="modal-desc">Recibe solicitudes de carga, optimiza tus rutas y aumenta tus ingresos. Todo desde tu celular.</p>
+                <div class="modal-store-btns">
+                    <a href="#" class="store-btn store-btn--apple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="store-label">Descargar en</span><span class="store-name">App Store</span></div></a>
+                    <a href="#" class="store-btn store-btn--google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.24-7.49-2.79-2.79-11.44 10.08zM.33 1.28C.12 1.6 0 2.03 0 2.56v18.88c0 .53.12.96.34 1.28l.07.07 10.58-10.58v-.25L.4 1.21l-.07.07zM20.55 9.77l-2.88-1.63-3.13 3.13 3.13 3.13 2.9-1.64c.83-.47.83-1.23-.02-1.99zM4.17.24L17.41 7.73l-2.79 2.79L3.18.44c.34-.2.71-.23.99-.2z"/></svg><div><span class="store-label">Disponible en</span><span class="store-name">Google Play</span></div></a>
+                </div>
+                <div class="modal-divider"><span>o</span></div>
+                <a href="#" class="modal-web-btn">Empezar en Web App →</a>
+            </div>
+        </div>
+    </template>
+
 </section>
+
+<style>
+    /* ── Phone video (chroma key canvas) ───────────────── */
+    .hero-phone-wrap {
+        width: 780px;
+        max-width: 95%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+    }
+    .hero-phone-canvas {
+        width: 100%;
+        height: 100%;
+        max-height: calc(100vh - 420px);
+        object-fit: contain;
+        display: block;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Bottom fade — dissolves the hard crop of hand/phone bottom */
+    .hero-phone-bottom-fade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 38%;
+        background: linear-gradient(to top,
+            var(--fade-color, #F2F4F7) 0%,
+            transparent 100%
+        );
+        z-index: 3;
+        pointer-events: none;
+    }
+    :global(.dark) .hero-phone-bottom-fade {
+        --fade-color: #0f172a;
+    }
+
+    /* Floating orbs underneath the phone for depth */
+    .hero-phone-orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        filter: blur(50px);
+        opacity: 0.45;
+    }
+    .hero-phone-orb--left {
+        width: 200px;
+        height: 120px;
+        bottom: 8%;
+        left: 10%;
+        background: radial-gradient(ellipse, #1F6AE1 0%, transparent 70%);
+        animation: orbFloat 5s ease-in-out infinite;
+    }
+    .hero-phone-orb--right {
+        width: 160px;
+        height: 100px;
+        bottom: 4%;
+        right: 12%;
+        background: radial-gradient(ellipse, #A9C9FF 0%, transparent 70%);
+        animation: orbFloat 6s ease-in-out infinite reverse;
+    }
+    @keyframes orbFloat {
+        0%, 100% { transform: translateY(0px); }
+        50%       { transform: translateY(-12px); }
+    }
+
+    /* Subtle reflection line under the phone */
+    .hero-phone-reflection {
+        position: absolute;
+        bottom: 14%;
+        left: 25%;
+        right: 25%;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(169,201,255,0.3), transparent);
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    /* ── Backdrop ───────────────────────────────────────── */
+    .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(10, 37, 64, 0.45);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+    }
+    .modal-backdrop.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* ── Modal wrapper ──────────────────────────────────── */
+    .hero-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+    .hero-modal.is-open {
+        pointer-events: auto;
+    }
+
+    /* ── Bubble card ────────────────────────────────────── */
+    .modal-bubble {
+        position: relative;
+        width: min(440px, 92vw);
+        background: white;
+        border-radius: 28px;
+        padding: 2.5rem 2rem 2rem;
+        box-shadow:
+            0 0 0 1px rgba(0,0,0,0.06),
+            0 24px 60px rgba(10, 37, 64, 0.18),
+            0 8px 20px rgba(10, 37, 64, 0.1);
+        transform: scale(0.72) translateY(24px);
+        opacity: 0;
+        transform-origin: center bottom;
+        transition:
+            transform 0.45s cubic-bezier(0.34, 1.42, 0.64, 1),
+            opacity   0.3s  ease;
+        text-align: center;
+    }
+    :global(.dark) .modal-bubble {
+        background: #0f172a;
+        box-shadow:
+            0 0 0 1px rgba(255,255,255,0.07),
+            0 24px 60px rgba(0,0,0,0.5),
+            0 8px 20px rgba(0,0,0,0.3);
+    }
+    .hero-modal.is-open .modal-bubble {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+    /* ── Orbiting bubbles (decorative) ─────────────────── */
+    .modal-bubble::before,
+    .modal-bubble::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform 0.45s cubic-bezier(0.34, 1.42, 0.64, 1), opacity 0.3s ease;
+        opacity: 0;
+    }
+    .modal-bubble::before {
+        width: 80px; height: 80px;
+        background: radial-gradient(circle, var(--bubble-color, #1F6AE1) 0%, transparent 70%);
+        top: -30px; right: -20px;
+        transform: scale(0);
+    }
+    .modal-bubble::after {
+        width: 50px; height: 50px;
+        background: radial-gradient(circle, var(--bubble-color, #A9C9FF) 0%, transparent 70%);
+        bottom: -18px; left: -10px;
+        transform: scale(0);
+    }
+    .hero-modal.is-open .modal-bubble::before,
+    .hero-modal.is-open .modal-bubble::after {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    /* ── Close button ───────────────────────────────────── */
+    .modal-close {
+        position: absolute;
+        top: 1rem; right: 1rem;
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0,0,0,0.06);
+        color: #64748b;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .modal-close:hover {
+        background: rgba(0,0,0,0.12);
+        transform: rotate(90deg);
+    }
+    :global(.dark) .modal-close {
+        background: rgba(255,255,255,0.08);
+        color: #94a3b8;
+    }
+
+    /* ── Icon ───────────────────────────────────────────── */
+    .modal-icon {
+        width: 64px; height: 64px;
+        border-radius: 20px;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 1.25rem;
+    }
+
+    /* ── Text ───────────────────────────────────────────── */
+    .modal-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #0A2540;
+        margin: 0 0 0.5rem;
+    }
+    :global(.dark) .modal-title { color: #fff; }
+
+    .modal-desc {
+        font-size: 0.9rem;
+        color: #64748b;
+        line-height: 1.6;
+        margin: 0 0 1.75rem;
+    }
+    :global(.dark) .modal-desc { color: #94a3b8; }
+
+    /* ── Store buttons ──────────────────────────────────── */
+    .modal-store-btns {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .store-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.65rem 1.1rem;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s, box-shadow 0.2s;
+        min-width: 150px;
+    }
+    .store-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .store-btn--apple {
+        background: #000;
+        color: #fff;
+    }
+    .store-btn--google {
+        background: #fff;
+        color: #000;
+        border: 1px solid #e2e8f0;
+    }
+    :global(.dark) .store-btn--google {
+        background: #1e293b;
+        color: #fff;
+        border-color: #334155;
+    }
+    .store-label {
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 400;
+        opacity: 0.75;
+        line-height: 1;
+    }
+    .store-name {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    /* ── Divider ─────────────────────────────────────────── */
+    .modal-divider {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 1.25rem 0 1rem;
+        color: #cbd5e1;
+        font-size: 0.8rem;
+    }
+    .modal-divider::before,
+    .modal-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e2e8f0;
+    }
+    :global(.dark) .modal-divider::before,
+    :global(.dark) .modal-divider::after { background: #1e293b; }
+
+    /* ── Web CTA ─────────────────────────────────────────── */
+    .modal-web-btn {
+        display: block;
+        width: 100%;
+        padding: 0.85rem;
+        background: linear-gradient(135deg, #1F6AE1, #A9C9FF);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border-radius: 14px;
+        text-decoration: none;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    .modal-web-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+</style>
 
 <script>
     import { gsap } from "gsap";
@@ -198,4 +453,146 @@
         },
         "-=0.8",
     );
+
+    // ── Chroma key: remove green background from phone video ─────────
+    const phoneVideo  = document.getElementById("hero-phone-video-src") as HTMLVideoElement;
+    const phoneCanvas = document.getElementById("hero-phone-canvas")    as HTMLCanvasElement;
+
+    if (phoneVideo && phoneCanvas) {
+        const ctx = phoneCanvas.getContext("2d", { willReadFrequently: true })!;
+        let chromaRunning = false;
+
+        // ── Boomerang: manual scrub forward then backward ─────────────
+        let boomerangDir  = 1;       // 1 = forward, -1 = reverse
+        const PLAYBACK_SPEED = 1.5;  // seconds of video time per real second
+
+        let lastTimestamp = 0;
+
+        function drawChromaFrame(timestamp: number) {
+            if (!phoneVideo.videoWidth || !phoneVideo.videoHeight) {
+                requestAnimationFrame(drawChromaFrame);
+                return;
+            }
+
+            if (phoneCanvas.width !== phoneVideo.videoWidth) {
+                phoneCanvas.width  = phoneVideo.videoWidth;
+                phoneCanvas.height = phoneVideo.videoHeight;
+            }
+
+            // Advance/rewind currentTime manually for boomerang
+            if (lastTimestamp) {
+                const delta = (timestamp - lastTimestamp) / 1000; // seconds
+                let next = phoneVideo.currentTime + boomerangDir * PLAYBACK_SPEED * delta;
+
+                if (next >= phoneVideo.duration) {
+                    next = phoneVideo.duration;
+                    boomerangDir = -1;
+                } else if (next <= 0) {
+                    next = 0;
+                    boomerangDir = 1;
+                }
+                phoneVideo.currentTime = next;
+            }
+            lastTimestamp = timestamp;
+
+            ctx.drawImage(phoneVideo, 0, 0);
+            const frame = ctx.getImageData(0, 0, phoneCanvas.width, phoneCanvas.height);
+            const d = frame.data;
+
+            for (let i = 0; i < d.length; i += 4) {
+                const r = d[i], g = d[i + 1], b = d[i + 2];
+                const isGreen = g > 80 && g > r * 1.25 && g > b * 1.15;
+                if (isGreen) d[i + 3] = 0;
+            }
+
+            ctx.putImageData(frame, 0, 0);
+            requestAnimationFrame(drawChromaFrame);
+        }
+
+        function startChroma() {
+            if (chromaRunning) return;
+            chromaRunning = true;
+            // Pause the video — we control time manually
+            phoneVideo.pause();
+            phoneVideo.currentTime = 0;
+            requestAnimationFrame(drawChromaFrame);
+        }
+
+        if (phoneVideo.readyState >= 1) {
+            startChroma();
+        } else {
+            phoneVideo.addEventListener("loadedmetadata", startChroma, { once: true });
+        }
+        phoneVideo.load();
+    }
+
+    // ── Mount modals at body level (escape overflow:hidden) ──────────
+    const template = document.getElementById("hero-modals-template") as HTMLTemplateElement;
+    document.body.appendChild(template.content.cloneNode(true));
+
+    const backdrop = document.getElementById("hero-modal-backdrop")!;
+    let activeModal: HTMLElement | null = null;
+    let scrollY = 0;
+
+    function lockScroll() {
+        scrollY = window.scrollY;
+        document.body.style.position = "fixed";
+        document.body.style.top      = `-${scrollY}px`;
+        document.body.style.left     = "0";
+        document.body.style.right    = "0";
+        document.body.style.overflow = "hidden";
+        (window as any).__lenis?.stop?.();
+    }
+
+    function unlockScroll() {
+        document.body.style.position = "";
+        document.body.style.top      = "";
+        document.body.style.left     = "";
+        document.body.style.right    = "";
+        document.body.style.overflow = "";
+        window.scrollTo({ top: scrollY, behavior: "instant" });
+        (window as any).__lenis?.start?.();
+    }
+
+    function openModal(id: string, originBtn: HTMLElement) {
+        const modal = document.getElementById(`modal-${id}`);
+        if (!modal) return;
+
+        const btnRect = originBtn.getBoundingClientRect();
+        const bubbleEl = modal.querySelector(".modal-bubble") as HTMLElement;
+        const bx = btnRect.left + btnRect.width  / 2;
+        const by = btnRect.top  + btnRect.height / 2;
+        const ox = ((bx / window.innerWidth)  * 100).toFixed(1);
+        const oy = ((by / window.innerHeight) * 100).toFixed(1);
+        bubbleEl.style.transformOrigin = `${ox}% ${oy}%`;
+
+        lockScroll();
+        backdrop.classList.add("is-open");
+        modal.classList.add("is-open");
+        activeModal = modal;
+    }
+
+    function closeModal() {
+        if (!activeModal) return;
+        activeModal.classList.remove("is-open");
+        backdrop.classList.remove("is-open");
+        unlockScroll();
+        activeModal = null;
+    }
+
+    document.querySelectorAll<HTMLButtonElement>(".hero-cta-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.dataset.modal;
+            if (id) openModal(id, btn);
+        });
+    });
+
+    backdrop.addEventListener("click", closeModal);
+    document.querySelectorAll(".modal-close").forEach(btn =>
+        btn.addEventListener("click", closeModal)
+    );
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+    });
 </script>

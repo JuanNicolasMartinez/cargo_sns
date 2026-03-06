@@ -26,7 +26,7 @@ import { Menu, Sun, Moon } from "lucide-astro";
         </a>
 
         <div class="hidden md:flex items-center space-x-8">
-            <a
+            <!-- <a
                 href="#features"
                 class="text-brand-dark/80 dark:text-slate-300 hover:text-brand-primary dark:hover:text-brand-primary font-medium transition-colors"
                 >Características</a
@@ -40,7 +40,7 @@ import { Menu, Sun, Moon } from "lucide-astro";
                 href="#download"
                 class="text-brand-dark/80 dark:text-slate-300 hover:text-brand-primary dark:hover:text-brand-primary font-medium transition-colors"
                 >Descargar</a
-            >
+            > -->
         </div>
 
         <div class="hidden md:flex items-center space-x-4">
@@ -98,14 +98,161 @@ import { Menu, Sun, Moon } from "lucide-astro";
         }
     });
 
-    // Theme Toggle Logic
-    const handleToggleClick = () => {
-        const element = document.documentElement;
-        element.classList.toggle("dark");
+    // Theme Toggle Logic — multi-layer cinematic transition
+    let isAnimating = false;
 
-        const isDark = element.classList.contains("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-    }
+    const handleToggleClick = (e: MouseEvent) => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const html = document.documentElement;
+        const isDark = html.classList.contains("dark");
+        const ox = e.clientX;
+        const oy = e.clientY;
+        const W = window.innerWidth;
+        const H = window.innerHeight;
+
+        // Colors for new theme
+        const newBg   = isDark ? "#F2F4F7" : "#0A2540";
+        const newAccent = isDark ? "#1F6AE1" : "#A9C9FF";
+
+        // ── 1. Button burst: scale + glow ring ──────────────────────
+        const btn = e.currentTarget as HTMLElement;
+        btn.animate(
+            [
+                { transform: "scale(1)",    filter: "none" },
+                { transform: "scale(1.5)",  filter: `drop-shadow(0 0 12px ${newAccent})` },
+                { transform: "scale(0.85)", filter: `drop-shadow(0 0 6px ${newAccent})` },
+                { transform: "scale(1)",    filter: "none" },
+            ],
+            { duration: 500, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)" }
+        );
+
+        // ── 2. Canvas with tile-dissolve effect ─────────────────────
+        const canvas = document.createElement("canvas");
+        canvas.width  = W;
+        canvas.height = H;
+        canvas.style.cssText = `
+            position:fixed; inset:0; z-index:9998;
+            pointer-events:none; will-change:transform;
+        `;
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext("2d")!;
+
+        const TILE = 60;
+        const cols = Math.ceil(W / TILE);
+        const rows = Math.ceil(H / TILE);
+
+        // Sort tiles by distance from click → ripple order
+        const tiles: { cx: number; cy: number; delay: number }[] = [];
+        const maxDist = Math.hypot(
+            Math.max(ox, W - ox),
+            Math.max(oy, H - oy)
+        );
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const cx = c * TILE + TILE / 2;
+                const cy = r * TILE + TILE / 2;
+                const dist = Math.hypot(cx - ox, cy - oy);
+                tiles.push({ cx, cy, delay: dist / maxDist });
+            }
+        }
+
+        const WAVE_DURATION = 700; // ms for last tile to finish
+        const TILE_ANIM     = 280; // each tile's animation duration
+        const startTime     = performance.now();
+        let themeApplied    = false;
+
+        function drawFrame(now: number) {
+            ctx.clearRect(0, 0, W, H);
+            let allDone = true;
+
+            for (const tile of tiles) {
+                const elapsed = now - startTime - tile.delay * WAVE_DURATION;
+                if (elapsed < 0) { allDone = false; continue; }
+
+                const t = Math.min(elapsed / TILE_ANIM, 1);
+                if (t < 1) allDone = false;
+
+                // Easing: ease-in-out cubic
+                const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+                // Tile scales up from center, then fades out
+                const scale    = ease < 0.6 ? ease / 0.6 : 1;
+                const alpha    = ease < 0.6 ? 1 : 1 - (ease - 0.6) / 0.4;
+                const tileSize = TILE * scale;
+
+                ctx.save();
+                ctx.globalAlpha = alpha;
+
+                // Slight rotation for organic feel
+                ctx.translate(tile.cx, tile.cy);
+                ctx.rotate(ease * 0.4);
+                ctx.translate(-tile.cx, -tile.cy);
+
+                // Draw rounded tile
+                const x0 = tile.cx - tileSize / 2;
+                const y0 = tile.cy - tileSize / 2;
+                const r  = tileSize * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(x0 + r, y0);
+                ctx.lineTo(x0 + tileSize - r, y0);
+                ctx.quadraticCurveTo(x0 + tileSize, y0, x0 + tileSize, y0 + r);
+                ctx.lineTo(x0 + tileSize, y0 + tileSize - r);
+                ctx.quadraticCurveTo(x0 + tileSize, y0 + tileSize, x0 + tileSize - r, y0 + tileSize);
+                ctx.lineTo(x0 + r, y0 + tileSize);
+                ctx.quadraticCurveTo(x0, y0 + tileSize, x0, y0 + tileSize - r);
+                ctx.lineTo(x0, y0 + r);
+                ctx.quadraticCurveTo(x0, y0, x0 + r, y0);
+                ctx.closePath();
+                ctx.fillStyle = newBg;
+                ctx.fill();
+
+                ctx.restore();
+            }
+
+            // Apply theme when wave hits ~50%
+            if (!themeApplied && (now - startTime) > WAVE_DURATION * 0.45) {
+                themeApplied = true;
+                html.classList.toggle("dark");
+                localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+            }
+
+            if (!allDone) {
+                requestAnimationFrame(drawFrame);
+            } else {
+                canvas.remove();
+                isAnimating = false;
+            }
+        }
+
+        requestAnimationFrame(drawFrame);
+
+        // ── 3. Shockwave ring from click origin ──────────────────────
+        for (let i = 0; i < 3; i++) {
+            const ring = document.createElement("div");
+            ring.style.cssText = `
+                position:fixed;
+                left:${ox}px; top:${oy}px;
+                width:0; height:0;
+                border-radius:50%;
+                border: 2px solid ${newAccent};
+                transform:translate(-50%,-50%);
+                z-index:9999;
+                pointer-events:none;
+                opacity:0.8;
+            `;
+            document.body.appendChild(ring);
+            const delay = i * 80;
+            ring.animate(
+                [
+                    { width: "0px",   height: "0px",   opacity: 0.8, offset: 0 },
+                    { width: `${maxDist * 2.2}px`, height: `${maxDist * 2.2}px`, opacity: 0, offset: 1 },
+                ],
+                { duration: 800, delay, easing: "cubic-bezier(0.0, 0.5, 0.5, 1.0)", fill: "forwards" }
+            ).onfinish = () => ring.remove();
+        }
+    };
 
     document.getElementById("theme-toggle")?.addEventListener("click", handleToggleClick);
     document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggleClick);

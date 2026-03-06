@@ -58,11 +58,22 @@ const features = [
     
     <div id="video-pin-panel" class="relative w-full h-screen overflow-hidden">
         
-        <!-- Video -->
+        <!-- Video (light mode) -->
         <video
             id="scroll-video"
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover dark:hidden"
             src="/videos/City_map_with_truck.mp4"
+            muted
+            playsinline
+            preload="auto"
+            tabindex="-1"
+        ></video>
+
+        <!-- Video (dark mode) -->
+        <video
+            id="scroll-video-dark"
+            class="absolute inset-0 w-full h-full object-cover hidden dark:block"
+            src="/videos/City_map_with_truck_dark.mp4"
             muted
             playsinline
             preload="auto"
@@ -78,7 +89,7 @@ const features = [
             Dark mode: slate-900 fade → transparent
         -->
         <div class="absolute top-0 left-0 w-full h-36 z-10 pointer-events-none
-            bg-gradient-to-b from-white to-transparent
+            bg-linear-to-b from-white to-transparent
             dark:from-slate-900 dark:to-transparent"></div>
 
         <!-- 
@@ -86,7 +97,7 @@ const features = [
             Both modes: fade to brand-dark since next section IS dark
         -->
         <div class="absolute bottom-0 left-0 w-full h-36 z-10 pointer-events-none
-            bg-gradient-to-t from-brand-dark to-transparent"></div>
+            bg-linear-to-t from-brand-dark to-transparent"></div>
 
         <!-- ─── Title overlay with frosted pill (NOT full-screen scrim) ─── -->
         <div id="features-intro" class="absolute inset-0 z-20 flex items-center justify-center text-center px-6 pointer-events-none">
@@ -511,23 +522,25 @@ const features = [
 
     function initScrollVideo() {
         const video = document.getElementById("scroll-video") as HTMLVideoElement;
+        const videoDark = document.getElementById("scroll-video-dark") as HTMLVideoElement;
         const panel = document.getElementById("video-pin-panel");
         const section = document.getElementById("features");
         const intro = document.getElementById("features-intro");
         const featureEls = document.querySelectorAll(".feature-overlay");
         const dots = document.querySelectorAll(".progress-dot");
 
-        if (!video || !panel || !section) return;
+        if (!video || !videoDark || !panel || !section) return;
 
         // Hidden canvas for frame capture
         const captureCanvas = document.createElement("canvas");
         const captureCtx = captureCanvas.getContext("2d");
 
         function captureFrameToBackground() {
-            if (!captureCtx || !video.videoWidth) return;
-            captureCanvas.width = video.videoWidth;
-            captureCanvas.height = video.videoHeight;
-            captureCtx.drawImage(video, 0, 0, captureCanvas.width, captureCanvas.height);
+            const activeVideo = document.documentElement.classList.contains("dark") ? videoDark : video;
+            if (!captureCtx || !activeVideo.videoWidth) return;
+            captureCanvas.width = activeVideo.videoWidth;
+            captureCanvas.height = activeVideo.videoHeight;
+            captureCtx.drawImage(activeVideo, 0, 0, captureCanvas.width, captureCanvas.height);
             try {
                 const dataUrl = captureCanvas.toDataURL("image/jpeg", 0.85);
                 section!.style.backgroundImage = `url(${dataUrl})`;
@@ -561,10 +574,13 @@ const features = [
                 onUpdate: (self) => {
                     const progress = self.progress;
 
-                    // Scrub video
+                    // Scrub both videos in sync
                     const targetTime = progress * duration;
                     if (Math.abs(video.currentTime - targetTime) > 0.03) {
                         video.currentTime = targetTime;
+                    }
+                    if (Math.abs(videoDark.currentTime - targetTime) > 0.03) {
+                        videoDark.currentTime = targetTime;
                     }
 
                     // Capture last frame near the end so it's ready
@@ -627,6 +643,7 @@ const features = [
         }
 
         video.load();
+        videoDark.load();
     }
 
     function initHowItWorks() {
