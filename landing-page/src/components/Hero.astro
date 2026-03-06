@@ -4,19 +4,8 @@
 
 <section class="hero-section relative overflow-hidden h-screen flex flex-col">
 
-    <!-- Ambient background glows -->
-    <!-- <div class="absolute inset-0 z-0 pointer-events-none">
-        <div class="absolute top-[15%] left-[20%] w-96 h-96 bg-brand-primary/15 rounded-full blur-[120px] animate-pulse"></div>
-        <div class="absolute top-[10%] right-[15%] w-72 h-72 bg-brand-light/20 rounded-full blur-[100px] animate-pulse delay-1000"></div>
-    </div> -->
-
     <!-- ── TOP: Text content centered ── -->
     <div class="relative z-10 pt-16 pb-4 flex flex-col items-center text-center px-6 shrink-0" id="hero-content">
-        <!-- <div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-sm font-medium mb-4">
-            <span class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"></span>
-            La revolución logística está aquí
-        </div> -->
-
         <h1 class="text-4xl lg:text-6xl font-bold leading-tight text-brand-dark dark:text-white max-w-4xl">
             Almacena y Transporta<br/>
             <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-brand-light">Sin Límites</span>
@@ -56,10 +45,9 @@
     </div>
 
     <!-- ── BOTTOM: Phone video full-width ── -->
-    <!-- ── BOTTOM: Phone video full-width ── -->
     <div class="relative z-10 w-full flex justify-center flex-1 min-h-0" id="hero-visual">
-        <div class="absolute bottom-[20%] left-[8%] w-52 h-52 bg-brand-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
-        <div class="absolute bottom-[15%] right-[8%] w-44 h-44 bg-brand-light/20 rounded-full blur-[70px] pointer-events-none"></div>
+        <div class="absolute bottom-[20%] left-[8%] w-52 h-52 bg-brand-primary/20 rounded-full blur-[80px] pointer-events-none hidden lg:block"></div>
+        <div class="absolute bottom-[15%] right-[8%] w-44 h-44 bg-brand-light/20 rounded-full blur-[70px] pointer-events-none hidden lg:block"></div>
 
         <div class="hero-phone-wrap">
             <video
@@ -132,7 +120,7 @@
 </section>
 
 <style>
-    /* ── Phone video (chroma key canvas) ───────────────── */
+    /* ── Phone video wrapper ───────────────────────────── */
     .hero-phone-wrap {
         width: 780px;
         max-width: 95%;
@@ -140,7 +128,41 @@
         display: flex;
         flex-direction: column;
         max-height: 100%;
+        isolation: isolate;
     }
+
+    /*
+     * ── DARK-MODE: soft radial mask ─────────────────────
+     * Feathers ALL edges of the video so the background
+     * color mismatch dissolves into the page.
+     * The ellipse is tall (95% height) to keep the phone
+     * and hands fully visible, but fades the outer edges.
+     *
+     * TUNING:
+     *   - First % pair = ellipse width/height
+     *   - "at 50% 42%" = center of the ellipse (slightly up
+     *     to keep the top of the phone sharp)
+     *   - "black 55%" = fully visible core area
+     *   - "transparent 100%" = fully gone at edge
+     *
+     * If too much hand is cut: increase the first %s or
+     * increase "black 55%" toward "black 65%"
+     */
+    :global(.dark) .hero-phone-wrap {
+        -webkit-mask-image:
+            radial-gradient(
+                ellipse 75% 85% at 50% 42%,
+                black 55%,
+                transparent 100%
+            );
+        mask-image:
+            radial-gradient(
+                ellipse 75% 85% at 50% 42%,
+                black 55%,
+                transparent 100%
+            );
+    }
+
     .hero-phone-canvas {
         width: 100%;
         height: 100%;
@@ -151,33 +173,45 @@
         z-index: 2;
     }
 
-    /* Light mode: fondo blanco/gris → multiply lo hace transparente */
+    /* Light mode: multiply removes white bg */
     #hero-video-light {
         mix-blend-mode: multiply;
     }
 
-    /* Dark mode: fondo azul oscuro → screen lo elimina */
+    /*
+     * Dark mode video:
+     *   – screen blend makes the darkest pixels disappear
+     *     into whatever is behind (your page bg)
+     *   – contrast+brightness push the video bg toward
+     *     pure black so screen can eliminate it better
+     *   – the radial mask handles the edges
+     *
+     * TUNING:
+     *   - If the video content looks washed out:
+     *     lower brightness (e.g. 1.05)
+     *   - If bg rectangle is still visible:
+     *     raise contrast (e.g. 1.5)
+     */
     #hero-video-dark {
         mix-blend-mode: screen;
-        border-radius: 24px;
+        filter: contrast(1.4) brightness(1.1);
     }
 
-    /* Bottom fade — dissolves the hard crop of hand/phone bottom */
+    /* Bottom fade */
     .hero-phone-bottom-fade {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         height: 38%;
-        
         z-index: 3;
         pointer-events: none;
     }
     :global(.dark) .hero-phone-bottom-fade {
-        --fade-color: #0f172a;
+        background: linear-gradient(to bottom, transparent, #0f172a);
     }
 
-    /* Floating orbs underneath the phone for depth */
+    /* Floating orbs */
     .hero-phone-orb {
         position: absolute;
         border-radius: 50%;
@@ -207,7 +241,6 @@
         50%       { transform: translateY(-12px); }
     }
 
-    /* Subtle reflection line under the phone */
     .hero-phone-reflection {
         position: absolute;
         bottom: 14%;
@@ -451,24 +484,35 @@
     const videoLight = document.getElementById("hero-video-light") as HTMLVideoElement;
     const videoDark  = document.getElementById("hero-video-dark")  as HTMLVideoElement;
 
-    function applyThemeVideo() {
+    let currentTheme: boolean | null = null;
+
+    function applyThemeVideo(animate: boolean) {
         const isDark = document.documentElement.classList.contains("dark");
-        if (isDark) {
-            videoLight.style.display = "none";
-            videoDark.style.display  = "block";
-            if (videoDark.paused) videoDark.play();
-        } else {
-            videoDark.style.display  = "none";
-            videoLight.style.display = "block";
-            if (videoLight.paused) videoLight.play();
+        const incoming = isDark ? videoDark  : videoLight;
+        const outgoing = isDark ? videoLight : videoDark;
+
+        outgoing.style.display = "none";
+        incoming.style.display = "block";
+        if (incoming.paused) incoming.play();
+
+        if (animate) {
+            gsap.fromTo(incoming,
+                { opacity: 0, y: 60 },
+                { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 }
+            );
         }
     }
 
-    // Apply on load
-    applyThemeVideo();
+    // Init without animation
+    currentTheme = document.documentElement.classList.contains("dark");
+    applyThemeVideo(false);
 
-    // Observe class changes on <html> for runtime theme toggles
-    new MutationObserver(applyThemeVideo).observe(document.documentElement, {
+    new MutationObserver(() => {
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark === currentTheme) return; // class changed but theme didn't
+        currentTheme = isDark;
+        applyThemeVideo(true);
+    }).observe(document.documentElement, {
         attributes: true,
         attributeFilter: ["class"],
     });
@@ -501,10 +545,8 @@
         const ctx = phoneCanvas.getContext("2d", { willReadFrequently: true })!;
         let chromaRunning = false;
 
-        // ── Boomerang: manual scrub forward then backward ─────────────
-        let boomerangDir  = 1;       // 1 = forward, -1 = reverse
-        const PLAYBACK_SPEED = 1.5;  // seconds of video time per real second
-
+        let boomerangDir  = 1;
+        const PLAYBACK_SPEED = 1.5;
         let lastTimestamp = 0;
 
         function drawChromaFrame(timestamp: number) {
@@ -518,9 +560,8 @@
                 phoneCanvas.height = phoneVideo.videoHeight;
             }
 
-            // Advance/rewind currentTime manually for boomerang
             if (lastTimestamp) {
-                const delta = (timestamp - lastTimestamp) / 1000; // seconds
+                const delta = (timestamp - lastTimestamp) / 1000;
                 let next = phoneVideo.currentTime + boomerangDir * PLAYBACK_SPEED * delta;
 
                 if (next >= phoneVideo.duration) {
@@ -551,7 +592,6 @@
         function startChroma() {
             if (chromaRunning) return;
             chromaRunning = true;
-            // Pause the video — we control time manually
             phoneVideo.pause();
             phoneVideo.currentTime = 0;
             requestAnimationFrame(drawChromaFrame);
