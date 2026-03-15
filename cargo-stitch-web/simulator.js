@@ -3,12 +3,12 @@ async function loadSimulatedData() {
         const response = await fetch('/data.json');
         if (!response.ok) throw new Error('Failed to fetch data.json');
         const data = await response.json();
-        const path = window.location.pathname.toLowerCase().replace(/\/$/, ""); // Remove trailing slash if present
+        const path = window.location.pathname.toLowerCase();
 
         console.log('Processed path:', path);
 
-        // Onboarding Page
-        if (path.includes('onboarding')) {
+        // Onboarding Page - Detect "onboarding" or root if redirected
+        if (path.includes('onboarding') || path === '/' || path === '') {
             const container = document.getElementById('role-container');
             if (container && data.roles) {
                 container.innerHTML = data.roles.map(role => `
