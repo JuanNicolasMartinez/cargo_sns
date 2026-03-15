@@ -2,12 +2,12 @@ async function loadSimulatedData() {
     try {
         const response = await fetch('data.json');
         const data = await response.json();
-        const path = window.location.pathname;
+        const path = window.location.pathname.toLowerCase();
 
         console.log('Current path:', path);
 
         // Onboarding Page
-        if (path.includes('onboarding.html')) {
+        if (path.endsWith('onboarding.html') || path.endsWith('onboarding')) {
             const container = document.getElementById('role-container');
             if (container && data.roles) {
                 container.innerHTML = data.roles.map(role => `
@@ -32,8 +32,9 @@ async function loadSimulatedData() {
         }
 
         // Marketplace Page
-        if (path.includes('marketplace.html')) {
-            const container = document.getElementById('warehouse-container');
+        if (path.endsWith('marketplace.html') || path.endsWith('marketplace')) {
+            // Try both IDs because marketplace.html has 'warehouse-container' but sometimes it might be missed
+            const container = document.getElementById('warehouse-container') || document.getElementById('market-container');
             if (container && data.marketplace) {
                 container.innerHTML = data.marketplace.map(wh => `
                     <div class="bg-slate-800/40 border border-slate-700/30 rounded-2xl p-4 flex gap-4 transition-all hover:bg-slate-800/60">
@@ -70,7 +71,7 @@ async function loadSimulatedData() {
         }
 
         // Dashboard Page
-        if (path.includes('dashboard.html')) {
+        if (path.endsWith('dashboard.html') || path.endsWith('dashboard')) {
             // Static elements
             const nameEl = document.getElementById('user-name');
             const avatarEl = document.getElementById('user-avatar');

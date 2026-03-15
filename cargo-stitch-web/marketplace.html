@@ -47,8 +47,8 @@
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
-    <div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto">
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+    <div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto">
         <!-- Header & Search -->
         <div
             class="absolute top-0 left-0 right-0 z-20 px-4 pt-4 pb-2 space-y-3 bg-gradient-to-b from-background-dark to-transparent">
@@ -92,8 +92,8 @@
         </div>
 
         <!-- Warehouse List Overlay -->
-        <div class="relative z-10 mt-auto h-[55%] flex flex-col">
-            <div class="glass-card rounded-t-3xl flex-1 flex flex-col overflow-hidden shadow-2xl">
+        <div class="relative z-10 mt-auto min-h-[60%] flex flex-col">
+            <div class="glass-card rounded-t-3xl flex-1 flex flex-col shadow-2xl">
                 <div class="flex justify-center py-3">
                     <div class="w-12 h-1.5 bg-slate-600/50 rounded-full"></div>
                 </div>
