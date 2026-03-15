@@ -1,13 +1,14 @@
 async function loadSimulatedData() {
     try {
-        const response = await fetch('data.json');
+        const response = await fetch('/data.json');
+        if (!response.ok) throw new Error('Failed to fetch data.json');
         const data = await response.json();
-        const path = window.location.pathname.toLowerCase();
+        const path = window.location.pathname.toLowerCase().replace(/\/$/, ""); // Remove trailing slash if present
 
-        console.log('Current path:', path);
+        console.log('Processed path:', path);
 
         // Onboarding Page
-        if (path.endsWith('onboarding.html') || path.endsWith('onboarding')) {
+        if (path.includes('onboarding')) {
             const container = document.getElementById('role-container');
             if (container && data.roles) {
                 container.innerHTML = data.roles.map(role => `
@@ -32,8 +33,7 @@ async function loadSimulatedData() {
         }
 
         // Marketplace Page
-        if (path.endsWith('marketplace.html') || path.endsWith('marketplace')) {
-            // Try both IDs because marketplace.html has 'warehouse-container' but sometimes it might be missed
+        if (path.includes('marketplace')) {
             const container = document.getElementById('warehouse-container') || document.getElementById('market-container');
             if (container && data.marketplace) {
                 container.innerHTML = data.marketplace.map(wh => `
@@ -71,7 +71,7 @@ async function loadSimulatedData() {
         }
 
         // Dashboard Page
-        if (path.endsWith('dashboard.html') || path.endsWith('dashboard')) {
+        if (path.includes('dashboard')) {
             // Static elements
             const nameEl = document.getElementById('user-name');
             const avatarEl = document.getElementById('user-avatar');
