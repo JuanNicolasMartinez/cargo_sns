@@ -1,0 +1,17 @@
+{
+    "cleanUrls": true,
+    "rewrites": [
+        {
+            "source": "/onboarding",
+            "destination": "/onboarding.html"
+        },
+        {
+            "source": "/marketplace",
+            "destination": "/marketplace.html"
+        },
+        {
+            "source": "/dashboard",
+            "destination": "/dashboard.html"
+        }
+    ]
+}
