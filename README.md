@@ -1,43 +1,48 @@
-# Astro Starter Kit: Minimal
+# Cargo SNS 🚚📦
 
-```sh
-npm create astro@latest -- --template minimal
-```
+**Cargo SNS** es una plataforma logística inteligente diseñada para conectar a dueños de mercancía, anfitriones de bodegas y transportistas independientes en un ecosistema de economía colaborativa.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🌟 Características Principales
+- **Marketplace de Almacenamiento:** Encuentra y reserva espacios seguros para tu mercancía.
+- **Gestión de Flotas:** Conecta transportistas con cargas disponibles en tiempo real.
+- **Diseño Premium:** Interfaz moderna en Dark Mode construida con Astro 5 y animaciones de alta fidelidad.
+- **Escalable:** Arquitectura de base de datos pensada para el crecimiento del ecosistema.
 
-## 🚀 Project Structure
+## 🚀 Inicio Rápido
 
-Inside of your Astro project, you'll see the following folders and files:
+### Requisitos Previos
+- **Node.js:** Versión 18.20.8 o superior (recomendado v24 LTS).
+- **Manejador de versiones:** Recomendamos usar `nvm`.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/JuanNicolasMartinez/cargo_sns.git
+   ```
+2. Entra al directorio de la landing page:
+   ```bash
+   cd landing-page
+   ```
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📂 Estructura del Proyecto
+- `landing-page/`: Código fuente de la web principal (Astro).
+- `docs/`: Documentación técnica, esquema de DB y bocetos de diseño.
+- `PROGRESS.md`: Bitácora detallada del desarrollo y metodología del equipo.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🛠️ Tecnologías Utilizadas
+- [Astro 5](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [GSAP](https://greensock.com/gsap/) (Animaciones)
+- [Lenis](https://github.com/darkroomengineering/lenis) (Smooth Scroll)
+- [Lucide Astro](https://lucide.dev/) (Iconografía)
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+Desarrollado con ❤️ por el equipo de **Cargo SNS**.

@@ -1,0 +1,125 @@
+{
+    "user": {
+        "id": "USR-001",
+        "name": "Alex Rivers",
+        "role": "VIP Logistics Expert",
+        "avatar": "https://i.pravatar.cc/150?u=9",
+        "balance": "$24,850.00",
+        "stats": {
+            "total_goods": "12,482",
+            "active_routes": "18",
+            "warehouses_occupied": "92%"
+        }
+    },
+    "roles": [
+        {
+            "id": "merchant",
+            "title": "Merchant",
+            "subtitle": "Load Owner",
+            "description": "Manage and ship your cargo with ease across the globe.",
+            "gradient": "accent-gradient-blue",
+            "icon": "inventory_2"
+        },
+        {
+            "id": "host",
+            "title": "Host",
+            "subtitle": "Warehouse Owner",
+            "description": "List your space and manage incoming storage requests.",
+            "gradient": "accent-gradient-orange",
+            "icon": "corporate_fare"
+        },
+        {
+            "id": "driver",
+            "title": "Driver",
+            "subtitle": "Transporter",
+            "description": "Find loads and optimize your daily delivery routes.",
+            "gradient": "bg-slate-800",
+            "icon": "local_shipping"
+        }
+    ],
+    "marketplace": [
+        {
+            "id": "WH-001",
+            "name": "Aran Logistics Bogotá",
+            "location": "Zona Franca, Bogotá",
+            "price": "$15.00/m²",
+            "rating": "5.0",
+            "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format\u0026fit=crop\u0026q=80\u0026w=400",
+            "tags": [
+                "Cold Chain",
+                "CCTV",
+                "24/7"
+            ]
+        },
+        {
+            "id": "WH-002",
+            "name": "TurboHub Fontibón",
+            "location": "Fontibón, Bogotá",
+            "price": "$12.50/m²",
+            "rating": "4.8",
+            "image": "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format\u0026fit=crop\u0026q=80\u0026w=400",
+            "tags": [
+                "Last Mile",
+                "Cross-Dock"
+            ]
+        },
+        {
+            "id": "WH-003",
+            "name": "Cargo Box Sur",
+            "location": "Sibaté, Cundinamarca",
+            "price": "$8.00/m²",
+            "rating": "4.5",
+            "image": "https://images.unsplash.com/photo-1487946339137-89e96e56211c?auto=format\u0026fit=crop\u0026q=80\u0026w=400",
+            "tags": [
+                "Self-Storage",
+                "Big Volume"
+            ]
+        },
+        {
+            "id": "WH-004",
+            "name": "Express Port Central",
+            "location": "Cerca al Aeropuerto El Dorado",
+            "price": "$18.50/m²",
+            "rating": "4.9",
+            "image": "https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format\u0026fit=crop\u0026q=80\u0026w=400",
+            "tags": [
+                "Bonded",
+                "Airport Link"
+            ]
+        }
+    ],
+    "alerts": [
+        {
+            "id": "AL-842",
+            "title": "Route #842 Delayed",
+            "description": "Heavy traffic in Sector 7. ETA updated to +45 mins.",
+            "type": "High Priority",
+            "time": "15m ago",
+            "status": "warning"
+        },
+        {
+            "id": "AL-843",
+            "title": "Storage Request",
+            "description": "New request for 250m² from Samsung Electronics.",
+            "type": "New Request",
+            "time": "1h ago",
+            "status": "info"
+        }
+    ],
+    "active_shipments": [
+        {
+            "id": "SH-001",
+            "from": "Bogotá",
+            "to": "Medellín",
+            "progress": 65,
+            "status": "In Transit"
+        },
+        {
+            "id": "SH-002",
+            "from": "Cali",
+            "to": "Cartagena",
+            "progress": 20,
+            "status": "Processing"
+        }
+    ]
+}

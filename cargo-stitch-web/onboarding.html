@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cargo SNS - Onboarding</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d7ff2",
+                        "accent-orange": "#f2910d",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#080c11",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(13, 127, 242, 0.4);
+        }
+
+        .accent-gradient-blue {
+            background: linear-gradient(135deg, #0d7ff2 0%, #064b8f 100%);
+        }
+
+        .accent-gradient-orange {
+            background: linear-gradient(135deg, #f2910d 0%, #a66200 100%);
+        }
+
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Header -->
+        <header class="flex items-center justify-between p-6 pt-8">
+            <div class="flex items-center gap-2">
+                <div class="size-10 rounded-lg flex items-center justify-center bg-primary/10">
+                    <img alt="Cargo SNS Logo" class="size-8 object-contain"
+                        src="https://cdn-icons-png.flaticon.com/512/3061/3061341.png" />
+                </div>
+                <span
+                    class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase italic">CARGO<span
+                        class="text-primary">SNS</span></span>
+            </div>
+            <button
+                class="flex size-10 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400">
+                <span class="material-symbols-outlined">help_outline</span>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 px-6 pb-12">
+            <div class="mt-8 mb-10">
+                <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    Choose Your <br />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-orange">Role</span>
+                </h1>
+                <p class="mt-3 text-slate-500 dark:text-slate-400 text-lg">Select how you want to use the Cargo SNS
+                    platform today.</p>
+            </div>
+
+            <div id="role-container" class="space-y-4">
+                <!-- Roles will be injected here by simulator.js -->
+            </div>
+
+            <!-- Footer Action -->
+            <div class="mt-12 text-center">
+                <p class="text-slate-500 dark:text-slate-500 text-sm">
+                    Already have an account?
+                    <a class="text-primary font-bold hover:underline" href="#">Log in</a>
+                </p>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation Indicator (Mobile feel) -->
+        <div class="flex justify-center pb-4">
+            <div class="w-32 h-1.5 bg-slate-300 dark:bg-slate-800 rounded-full"></div>
+        </div>
+    </div>
+    <script src="/simulator.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cargo SNS - Marketplace</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d7ff2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(26, 35, 46, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+    <div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto">
+        <!-- Header & Search -->
+        <div
+            class="absolute top-0 left-0 right-0 z-20 px-4 pt-4 pb-2 space-y-3 bg-gradient-to-b from-background-dark to-transparent">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+                    <h1 class="text-xl font-extrabold tracking-tight italic uppercase">CARGO<span
+                            class="text-primary">SNS</span></h1>
+                </div>
+                <button
+                    class="size-10 flex items-center justify-center rounded-xl bg-slate-800/50 border border-slate-700/50">
+                    <span class="material-symbols-outlined text-slate-300">notifications</span>
+                </button>
+            </div>
+            <div class="space-y-3">
+                <div class="relative flex items-center">
+                    <span class="material-symbols-outlined absolute left-3 text-slate-400">search</span>
+                    <input
+                        class="w-full h-12 pl-10 pr-4 bg-slate-800/80 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary placeholder:text-slate-500"
+                        placeholder="Search warehouses..." type="text" />
+                </div>
+                <div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+                    <button
+                        class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700/50 text-xs font-medium whitespace-nowrap">Size
+                        <span class="material-symbols-outlined text-sm">expand_more</span></button>
+                    <button
+                        class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700/50 text-xs font-medium whitespace-nowrap">Price
+                        <span class="material-symbols-outlined text-sm">expand_more</span></button>
+                    <button
+                        class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-xs font-medium whitespace-nowrap"><span
+                            class="material-symbols-outlined text-sm">tune</span> Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Background (Placeholder) -->
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-slate-900 flex items-center justify-center opacity-20">
+                <span class="material-symbols-outlined text-[200px] text-slate-700">map</span>
+            </div>
+        </div>
+
+        <!-- Warehouse List Overlay -->
+        <div class="relative z-10 mt-auto min-h-[60%] flex flex-col">
+            <div class="glass-card rounded-t-3xl flex-1 flex flex-col shadow-2xl">
+                <div class="flex justify-center py-3">
+                    <div class="w-12 h-1.5 bg-slate-600/50 rounded-full"></div>
+                </div>
+                <div class="px-6 mb-4 flex justify-between items-end">
+                    <div>
+                        <h2 class="text-xl font-bold">Premium Warehouses</h2>
+                        <p class="text-xs text-slate-400">Verified locations in Bogotá</p>
+                    </div>
+                </div>
+                <div id="warehouse-container" class="flex-1 overflow-y-auto px-4 pb-24 space-y-4 hide-scrollbar">
+                    <!-- Warehouses injected by simulator.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav
+            class="absolute bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-slate-800/50 bg-background-dark/95 backdrop-blur-md px-4 pb-8 pt-4">
+            <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500">
+                <span class="material-symbols-outlined">person</span>
+                <p class="text-[10px] font-bold uppercase">Profile</p>
+            </a>
+            <a href="marketplace.html" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined fill-current">explore</span>
+                <p class="text-[10px] font-bold uppercase">Explore</p>
+            </a>
+            <div class="relative -mt-12">
+                <button
+                    class="size-14 bg-primary rounded-full border-4 border-background-dark flex items-center justify-center text-white shadow-xl shadow-primary/40">
+                    <span class="material-symbols-outlined text-3xl">add</span>
+                </button>
+            </div>
+            <a href="#" class="flex flex-col items-center gap-1 text-slate-500">
+                <span class="material-symbols-outlined">local_shipping</span>
+                <p class="text-[10px] font-bold uppercase">Fleet</p>
+            </a>
+            <a href="#" class="flex flex-col items-center gap-1 text-slate-500">
+                <span class="material-symbols-outlined">settings</span>
+                <p class="text-[10px] font-bold uppercase">Settings</p>
+            </a>
+        </nav>
+    </div>
+    <script src="/simulator.js"></script>
+</body>
+
+</html>
