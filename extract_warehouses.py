@@ -1,10 +1,9 @@
 import osmium
 import json
-import gzip
 
 # Archivo PBF de entrada
 PBF_FILE = "app_cargo_sns/data/storage/geofabrik/colombia-latest.osm.pbf"
-OUTPUT_FILE = "warehouses.json.gz"
+OUTPUT_FILE = "warehouses.json"
 
 class WarehouseHandler(osmium.SimpleHandler):
     def __init__(self):
@@ -46,8 +45,8 @@ if __name__ == '__main__':
     print(f"Se encontraron {len(handler.warehouses)} bodegas/almacenes en total.")
     print(f"Comprimiendo y guardando los resultados en {OUTPUT_FILE}...")
     
-    # Guardamos los resultados como JSON comprimido en GZIP para ahorrar mucho espacio
-    with gzip.open(OUTPUT_FILE, 'wt', encoding='utf-8') as f:
+    # Guardamos los resultados como un archivo JSON normal (descomprimido)
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(handler.warehouses, f, ensure_ascii=False, indent=2)
         
     print("¡Proceso completado exitosamente!")
